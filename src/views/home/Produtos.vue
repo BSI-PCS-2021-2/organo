@@ -1,12 +1,9 @@
 <template>
   <div style="padding: 25px;">
     <div class="container">
-      <div class="col-md-4" v-for="f in fornecedores" :key="f.id">
-        <p class="h4">{{ f.nomeFantasia }}</p>
-      </div>
       <div class="row">
         <div class="col-md-4" v-for="produto in produtos" :key="produto.id">
-          <CardProduto :produto="produto" />
+          <CardProduto :produto="produto[0]" />
         </div>
       </div>
     </div>
@@ -27,9 +24,10 @@ export default {
     ...mapActions("usuario", ["retornaFornecedores"]),
   },
   watch: {
-    fornecedores(val) {
-      console.log(val[0].cnpj)
-      this.retornarProdutos(val[0].cnpj)
+    fornecedores() {
+      this.fornecedores.forEach((fornecedor) => {
+        this.retornarProdutos(fornecedor.cnpj)
+      })     
     },
   },
   mounted() {

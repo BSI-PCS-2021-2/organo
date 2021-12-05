@@ -1,13 +1,27 @@
 import axios from "axios"
 import router from '../../router'
 
-export function retornarProdutos({ commit }, fornecedorCnpj) {
+export function retornarProdutos({ commit, getters }, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/listarProdutos`;
+    let produtos = getters.produtos
     axios.get(url).then((response) => {
-        commit("setProdutos", response.data);
+        produtos.push(response.data)
+        commit("setProdutos", produtos);
     }).catch(error => {
         console.log(error);
     });
+}
+
+export function retornaFornecedor(fornecedorCnpj) {
+    console.log(fornecedorCnpj)
+    let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}`;
+    axios.get(url).then(function (response) {
+        console.log(response.data)
+        return response.data.nomeFantasia
+    })
+        .catch(function (error) {
+            console.log(error)
+        });
 }
 
 export function detalhesProduto({ commit }, id, fornecedorCnpj) {
@@ -17,7 +31,9 @@ export function detalhesProduto({ commit }, id, fornecedorCnpj) {
             nome: response.data.nome,
             id: response.data.id,
             preco: response.data.preco,
-            validade: response.data.validade
+            validade: response.data.validade,
+            foto_url: response.data.fotoUrl,
+            fornecedor: response.data.fornecedor
         }
         commit("setProduto", produtoData);
     }).catch(function (error) {

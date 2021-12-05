@@ -3,19 +3,23 @@
     <div class="row d-flex justify-content-center">
       <div class="col-6">
         <div class="card text-left shadow-md">
-          <img class="card-img-top" :src="produto.foto" alt />
+          <img class="card-img-top" :src="produto.fotoUrl" alt />
         </div>
       </div>
       <div class="col-6 text-left text-justify">
         <div class="display-3">{{ produto.nome }}</div>
         <p class="lead text-justify">{{ produto.conteudo }}</p>
         <div>
-          <p class="h3">Preço</p>
-          <p class="h2">{{ produto.preco }}</p>
+          <p class="h5">Preço</p>
+          <p class="h5">{{ produto.preco }}</p>
         </div>
         <div>
-          <p class="h3">Validade</p>
-          <p class="h2">{{ produto.validade }}</p>
+          <p class="h5">Validade</p>
+          <p class="h5">{{ produto.validade }}</p>
+        </div>
+        <div>
+          <p class="h5">Fornecedor</p>
+          <p class="h5">{{ produto.fornecedor.nomeFantasia }}</p>
         </div>
         <AddCarrinho :produto="produto"/>
       </div>
