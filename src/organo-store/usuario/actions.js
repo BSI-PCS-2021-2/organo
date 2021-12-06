@@ -18,7 +18,7 @@ export function login({ commit }, user) {
                 enderecos: response.data.enderecos,
                 pedidos: response.data.pedidos
             }
-            commit("setCompradorData", userData)
+            commit("setComprador", userData)
         } else if(user.type === 'fornecedor') {
             userData = {
                 nomeFantasia: response.data.nomeFantasia,
@@ -27,7 +27,7 @@ export function login({ commit }, user) {
                 id: response.data.id,
                 foto: response.data.foto
             }
-            commit("setFornecedorData", userData)
+            commit("setFornecedor", userData)
         }
         router.push('/')
     })
@@ -47,7 +47,7 @@ export function retornaFornecedores({ commit }) {
 }
 
 export function sair({ commit }, user) {
-    let usuario = null
+    let usuario = {}
     if (user.id) {
         if(user.type === 'fornecedor') {
             commit("setFornecedor", usuario)

@@ -12,18 +12,6 @@ export function retornarProdutos({ commit, getters }, fornecedorCnpj) {
     });
 }
 
-export function retornaFornecedor(fornecedorCnpj) {
-    console.log(fornecedorCnpj)
-    let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}`;
-    axios.get(url).then(function (response) {
-        console.log(response.data)
-        return response.data.nomeFantasia
-    })
-        .catch(function (error) {
-            console.log(error)
-        });
-}
-
 export function detalhesProduto({ commit }, id, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/produto/${fornecedorCnpj}/${id}`;
     axios.get(url).then((response) => {
@@ -61,4 +49,10 @@ export function removerDoCarrinho({ commit, getters }, id) {
         }
     }
     commit("setCarrinho", carrinho)
+}
+
+export function esvaziarProdutos({commit, getters}) {
+    let produtos = getters.produtos
+    produtos = []
+    commit("setProdutos", produtos)
 }

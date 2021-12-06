@@ -4,12 +4,14 @@
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <router-link class="navbar-brand" to="/">Organo</router-link>
         <div class="ml-auto">
-          <div class="btn btn-primary my-2 my-sm-0" v-if="comprador">
+          <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length !== 0">
+          <router-link class="btn btn-primary my-2 my-sm-0" to="/comprador">
             <img
-              :src="comprador.foto"
+              src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"
               class="img-thumbnail profile-image"
               alt
             />
+            </router-link>
           </div>
           <router-link v-else class="btn btn-primary my-2 my-sm-0" to="/loginComprador">Login</router-link>
           <router-link class="btn btn-primary my-2 my-sm-0" to="/carrinho">
@@ -22,8 +24,8 @@
           </router-link>
           <router-link class="btn btn-primary my-2 my-sm-0" to="/loginFornecedor"> Sou fornecedor
           </router-link>
-          <button
-          @click="sair()"
+          <button v-if="(comprador && Object.keys(comprador).length !== 0) || (fornecedor && Object.keys(fornecedor).length !== 0)"
+          @click="encerrarSessao()"
           type="button"
           class="btn btn-primary my-2 my-sm-0"
           >Sair</button>
@@ -40,19 +42,19 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Base",
   computed: {
-    ...mapGetters("usuario", ["comprador"]),
+    ...mapGetters("usuario", ["comprador", "fornecedor"]),
     ...mapGetters("produto", ["carrinho"])
   },
   methods: {
     ...mapActions("usuario", ["sair"]),
-    sair() {
-      if(this.fornecedor) {
-        this.sair({ id: this.fornecedor.id, type: 'fornecedor'} )
-      } else if(this.comprador) {
-        this.sair({ id: this.comprador.id, type: 'comprador'})
+    encerrarSessao() {
+      if(this.comprador) {
+        this.sair({ id: this.comprador.id, type: 'comprador'} )
+      } else if(this.fornecedor) {
+        this.sair({ id: this.fornecedor.id, type: 'fornecedor'})
       }   
     }
-  }
+  },
 
 };
 </script>

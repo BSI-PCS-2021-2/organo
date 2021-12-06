@@ -20,7 +20,7 @@ export default {
   },
   components: { CardProduto },
   methods: {
-    ...mapActions("produto", ["retornarProdutos", "adicionarNoCarrinho", "removerDoCarrinho"]),
+    ...mapActions("produto", ["retornarProdutos", "adicionarNoCarrinho", "removerDoCarrinho", "esvaziarProdutos"]),
     ...mapActions("usuario", ["retornaFornecedores"]),
   },
   watch: {
@@ -31,6 +31,7 @@ export default {
     },
   },
   mounted() {
+    this.esvaziarProdutos()
     this.retornaFornecedores()
   }
 };
