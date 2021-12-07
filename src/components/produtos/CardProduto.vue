@@ -70,10 +70,15 @@ export default {
   height: fit-content;
 }
 
+.card.product-card {
+  width: fit-content !important;
+}
+
 .card .product-image {
   margin: auto;
   height: 150px;
   width: 150px;
+  margin-top: 10px;
 }
 
 .btn.product-button {
