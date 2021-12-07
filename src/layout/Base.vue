@@ -16,8 +16,8 @@
           <router-link v-else class="btn btn-primary my-2 my-sm-0" to="/loginComprador">Login</router-link>
           <router-link class="btn btn-primary my-2 my-sm-0" to="/carrinho">
               <img
-                src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG38.png"
-                width="50"
+                src="https://i.imgur.com/lXAH3Yy.png"
+                width="40"
                 alt
               />
               <span class="badge badge-danger badge-pill">{{ carrinho.length }}</span>
@@ -81,13 +81,30 @@ nav {
   background: #6aa84f;
   border: #6aa84f;
 }
+
+.btn-secondary {
+  border-radius: 0%;
+  font-weight: bold;
+  background: rgb(235, 235, 235);
+  border: grey;
+  color: black;
+}
+
+.btn-tertiary {
+  border-radius: 0%;
+  font-weight: bold;
+  background: rgb(95, 95, 95);
+  border: grey;
+  color: rgb(255, 255, 255);
+}
+
 .btn:hover {
-  background: #00b4b4;
+  background: #6aa84f;
 }
 input {
   border-radius: 0%;
 }
 .btn:focus {
-  background: teal;
+  background: #6aa84f;
 }
 </style>

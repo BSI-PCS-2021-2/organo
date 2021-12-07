@@ -2,9 +2,9 @@
   <div style="padding: 25px;">
     <div class="container">
       <div v-for="listaProdutos in produtos" :key="listaProdutos[0].fornecedor.id">
-        <p class="h5"> {{ listaProdutos[0].fornecedor.nomeFantasia }}</p>
+        <p class="nome-fornecedor"> {{ listaProdutos[0].fornecedor.nomeFantasia }}</p>
         <div class="row">
-            <div class="col-md-4" v-for="produto in listaProdutos" :key="produto.id">
+            <div class="mr-2" v-for="produto in listaProdutos" :key="produto.id">
               <CardProduto :produto="produto" />
             </div>
         </div>
@@ -41,4 +41,9 @@ export default {
 };
 </script>
 <style>
+.nome-fornecedor {
+  text-align: left;
+  font-size: 1.6em;
+  font-family: 'Roboto', sans-serif;
+}
 </style>
