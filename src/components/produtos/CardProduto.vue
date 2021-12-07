@@ -3,7 +3,7 @@
     <img v-bind:src="`${produto.fotoUrl}`" class="card-img-top product-image" />
     <div class="card-body">
       <h5 class="card-title text-left product-name mb-1">{{ produto.nome }}</h5>
-      <p class="text-left mt-1">R$ {{ produto.preco.toString() }}</p>
+      <p class="text-left mt-1 product-price">R$ {{ produto.preco.toString() }}</p>
       <div class="row">
         <router-link
           type="button"
@@ -81,19 +81,24 @@ export default {
   margin-top: 10px;
 }
 
-.btn.product-button {
-  margin: auto;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+.card .product-price {
+  font-family: 'Roboto', sans-serif !important;
 }
 
-.card .product-name {
+.btn.product-button {
+  margin: auto;
+  font-family: 'Roboto', sans-serif !important; 
+}
+
+.card-title {
+  color: black;
   font-size: 1.2em;
-  font-family: 'Roboto', sans-serif;
+  font-weight: 900 !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .card.product-card {
   width: 180px;
-  height: 285px;
+  height: 290px;
 }
 </style>

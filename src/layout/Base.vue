@@ -1,8 +1,12 @@
 <template>
   <div>
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <router-link class="navbar-brand" to="/">Organo</router-link>
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top pl-3 pt-0 pb-0">
+        <img
+          src="https://i.imgur.com/jGIvAzn.png"
+          width="170px"
+          />
+        <router-link class="navbar-brand ml-2" to="/">Organo</router-link>
         <div class="ml-auto">
           <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length !== 0">
           <router-link class="btn btn-primary my-2 my-sm-0" to="/comprador">
@@ -13,7 +17,7 @@
             />
             </router-link>
           </div>
-          <router-link v-else class="btn btn-primary my-2 my-sm-0" to="/loginComprador">Login</router-link>
+          <router-link v-else class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginComprador">Login</router-link>
           <router-link class="btn btn-primary my-2 my-sm-0" to="/carrinho">
               <img
                 src="https://i.imgur.com/lXAH3Yy.png"
@@ -22,7 +26,7 @@
               />
               <span class="badge badge-danger badge-pill">{{ carrinho.length }}</span>
           </router-link>
-          <router-link class="btn btn-primary my-2 my-sm-0" to="/loginFornecedor"> Sou fornecedor
+          <router-link class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginFornecedor"> Sou fornecedor
           </router-link>
           <button v-if="(comprador && Object.keys(comprador).length !== 0) || (fornecedor && Object.keys(fornecedor).length !== 0)"
           @click="encerrarSessao()"
@@ -63,18 +67,30 @@ export default {
 nav {
   background-color: #6aa84f;
 }
+
 .navbar-brand {
-  font-weight: bold;
-  font-size: 25px;
+  font-weight: 500;
+  font-size: 50px;
   color: #ffffff !important;
+  font-family: 'Poiret One', cursive;
+  margin-top: -0.15em;
+  margin-bottom: -0.05em;
+  padding: 0;
 }
+
+.navbar-option {
+  font-size: 20px;
+}
+
 .profile-image {
   width: 50px;
   border-radius: 100% !important;
 }
+
 .page-container {
   padding-top: 81px;
 }
+
 .btn {
   border-radius: 0%;
   font-weight: bold;
@@ -100,6 +116,7 @@ nav {
 
 .btn:hover {
   background: #6aa84f;
+  color: black
 }
 input {
   border-radius: 0%;
