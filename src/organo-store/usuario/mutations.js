@@ -9,3 +9,7 @@ export function setFornecedor(state, val) {
 export function setFornecedores(state, val) {
     state.fornecedores = val
 }
+
+export function setFornecedorPedidos(state, val) {
+    state.fornecedorPedidos = val
+}

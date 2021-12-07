@@ -19,6 +19,7 @@ export function login({ commit }, user) {
                 pedidos: response.data.pedidos
             }
             commit("setComprador", userData)
+            router.push('/')
         } else if(user.type === 'fornecedor') {
             userData = {
                 nomeFantasia: response.data.nomeFantasia,
@@ -28,11 +29,11 @@ export function login({ commit }, user) {
                 foto: response.data.foto
             }
             commit("setFornecedor", userData)
+            router.push('/fornecedor')
         }
-        router.push('/')
     })
         .catch(function (error) {
-            console.log(error)
+            (error)
         });
 }
 
@@ -40,6 +41,16 @@ export function retornaFornecedores({ commit }) {
     let url = `http://localhost:8082/organo/fornecedor/listar`;
     Axios.get(url).then(function (response) {
         commit("setFornecedores", response.data)
+    })
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
+export function retornarPedidos({ commit }, fornecedorCnpj) {
+    let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/listarPedidos`;
+    Axios.get(url).then(function (response) {
+        commit("setFornecedorPedidos", response.data)
     })
         .catch(function (error) {
             console.log(error)

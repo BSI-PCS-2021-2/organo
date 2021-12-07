@@ -28,7 +28,6 @@ export default {
   },
   watch: {
     fornecedores() {
-      console.log('entrei no fornecedores')
       this.fornecedores.forEach((fornecedor) => {
         this.retornarProdutos(fornecedor.cnpj)
       })     

@@ -34,7 +34,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  name: "Login Fornecedor",
+  name: "LoginFornecedor",
   data() {
     return {
       email: '',
