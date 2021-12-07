@@ -1,9 +1,11 @@
 <template>
   <div style="padding: 25px;">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4" v-for="produto in produtos" :key="produto.id">
-          <CardProduto :produto="produto[0]" />
+      <div v-for="listaProdutos in produtos">
+        <div class="row">
+            <div class="col-md-4" v-for="produto in listaProdutos" :key="produto.id">
+              <CardProduto :produto="produto" />
+            </div>
         </div>
       </div>
     </div>

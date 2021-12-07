@@ -20,7 +20,10 @@ export default {
 };
 </script>
 <style>
+.card-body {
+  width: fit-content;
+}
 .card .product-image {
-  height: 300px;
+  height: fit-content;
 }
 </style>
