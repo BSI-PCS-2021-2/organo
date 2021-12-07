@@ -44,6 +44,5 @@ export default {
 .nome-fornecedor {
   text-align: left;
   font-size: 1.6em;
-  font-family: 'Roboto', sans-serif;
 }
 </style>

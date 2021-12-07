@@ -64,16 +64,4 @@ export default {
   padding: 20px;
   box-shadow: 0px 2px 5px 2px #888888;
 }
-.btn {
-  border-radius: 0%;
-  font-weight: bold;
-  background: teal;
-  border: teal;
-}
-.btn:hover {
-  background: #00b4b4;
-}
-.btn:focus {
-  background: teal;
-}
 </style>
