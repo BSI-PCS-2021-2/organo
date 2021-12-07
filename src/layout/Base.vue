@@ -61,7 +61,7 @@ export default {
 
 <style>
 nav {
-  background-color: teal;
+  background-color: #6aa84f;
 }
 .navbar-brand {
   font-weight: bold;
@@ -78,8 +78,8 @@ nav {
 .btn {
   border-radius: 0%;
   font-weight: bold;
-  background: teal;
-  border: teal;
+  background: #6aa84f;
+  border: #6aa84f;
 }
 .btn:hover {
   background: #00b4b4;
