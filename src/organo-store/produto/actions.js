@@ -5,7 +5,9 @@ export function retornarProdutos({ commit, getters }, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/listarProdutos`;
     let produtos = getters.produtos
     axios.get(url).then((response) => {
-        produtos.push(response.data)
+        if(Object.keys(response.data).length !== 0) {
+            produtos.push(response.data)
+        }
         commit("setProdutos", produtos);
     }).catch(error => {
         console.log(error);

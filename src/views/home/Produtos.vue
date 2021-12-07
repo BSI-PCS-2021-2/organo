@@ -1,7 +1,8 @@
 <template>
   <div style="padding: 25px;">
     <div class="container">
-      <div v-for="listaProdutos in produtos">
+      <div v-for="listaProdutos in produtos" :key="listaProdutos[0].fornecedor.id">
+        <p class="h5"> {{ listaProdutos[0].fornecedor.nomeFantasia }}</p>
         <div class="row">
             <div class="col-md-4" v-for="produto in listaProdutos" :key="produto.id">
               <CardProduto :produto="produto" />
@@ -27,6 +28,7 @@ export default {
   },
   watch: {
     fornecedores() {
+      console.log('entrei no fornecedores')
       this.fornecedores.forEach((fornecedor) => {
         this.retornarProdutos(fornecedor.cnpj)
       })     
