@@ -4,7 +4,7 @@
       <div v-for="listaProdutos in produtos" :key="listaProdutos[0].fornecedor.id">
         <p class="nome-fornecedor"> {{ listaProdutos[0].fornecedor.nomeFantasia }}</p>
         <div class="row">
-            <div class="mr-2" v-for="produto in listaProdutos" :key="produto.id">
+            <div class="mr-2 mb-4" v-for="produto in listaProdutos" :key="produto.id">
               <CardProduto :produto="produto" />
             </div>
         </div>
