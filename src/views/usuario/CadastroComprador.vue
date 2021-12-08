@@ -46,7 +46,8 @@
                     <label for="inputCep">CEP</label>
                     <input type="text" v-model="cep" class="form-control" id="inputCep" placeholder="CEP" maxLength="8" required>
                 </div>
-                <button @click="cadastraComprador()" type="submit" class="btn btn-primary">Cadastrar</button>     
+                <button @click="cadastraComprador()" type="submit" class="btn btn-primary">Cadastrar</button>
+                <span id="preenche-campos" class="h5"></span>     
             </form>
           </div>  
         </div>
@@ -77,6 +78,11 @@ export default {
   methods: {
     ...mapActions("usuario", ["retornaFornecedores", "cadastrarComprador"]),
     cadastraComprador() {
+        if(this.nome === "" || this.sobrenome === "" || this.senha === "" || this.email === "" ||
+        this.cpf === "" || this.rua === "" || this.numero === "" || this.cep === "") {
+            document.getElementBId("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+        }
+        document.getElementBId("preenche-campos").value = ""
         const comprador = {
             nome: this.nome,
             sobrenome: this.sobrenome,
