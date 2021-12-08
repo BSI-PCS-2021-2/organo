@@ -24,7 +24,12 @@
               <input type="password" class="form-control" id="exampleInputPassword1" v-model="senha"/>
             </div>
             <button @click="loginUsuario()" type="submit" class="btn btn-primary btn-block">Login</button>
-            <button @click="cadastrarUsuario()" type="submit" class="btn btn-primary btn-block">Cadastrar-se</button>
+            <small id="compradorNaoCadastrado" class="form-text text-muted">Não possui uma conta?</small>
+            <router-link
+            type="submit"
+            class="btn btn-primary btn-block"
+            :to="'/cadastroComprador/'"
+            >Cadastrar-se</router-link>
           </div>
         </div>
       </div>

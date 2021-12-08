@@ -1,5 +1,6 @@
 import router from '../../router'
 import Axios from 'axios';
+import Swal from 'sweetalert2'
 export function login({ commit }, user) {
     const usuario = {
         email: user.email,
@@ -34,6 +35,33 @@ export function login({ commit }, user) {
     })
         .catch(function (error) {
             (error)
+        });
+}
+
+export function cadastrarComprador({commit, getters}, compradorCadastro) {
+    console.log(compradorCadastro)
+    let url = "http://localhost:8082/organo/comprador/cadastrar"
+    Axios.post(url, compradorCadastro).then(function (response) {
+        if(response.status === 201) {
+            Swal.fire({
+                title: 'Comprador cadastrado com sucesso!',
+                text: 'Você já pode se logar.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            const comprador = getters.comprador
+            commit('setComprador', comprador)  
+            setTimeout(router.push('/loginComprador'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Cadastro com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+            console.log(error)
         });
 }
 
