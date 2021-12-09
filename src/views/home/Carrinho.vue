@@ -43,7 +43,7 @@
           @click="checkout()"
           type="button"
           class="btn btn-primary btn-lg btn-block mt-4"
-        >Checkout</button>
+        >Finalizar compra</button>
       </div>
     </div>
   </div>
