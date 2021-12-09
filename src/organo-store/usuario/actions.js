@@ -50,7 +50,7 @@ export function login({ commit }, user) {
                 icon: 'error',
                 confirmButtonText: 'Ok'
               })
-            (error)
+            console.log(error)
         });
 }
 
