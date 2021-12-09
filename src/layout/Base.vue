@@ -12,10 +12,10 @@
           <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length !== 0 && Object.keys(fornecedor).length === 0">
           <router-link class="btn btn-primary my-2 my-sm-0" to="/comprador">
             <img
-              src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"
-              class="img-thumbnail profile-image"
-              alt
-            />
+                src="../assets/icons/user_icon.png"
+                alt="Perfil"
+                title="Perfil"
+                ->
             </router-link>
           </div>
           <router-link v-else-if="Object.keys(comprador).length === 0 && Object.keys(fornecedor).length === 0" class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginComprador">Login</router-link>

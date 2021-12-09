@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-3">
       <label class="sr-only" for="inlineFormInputName2">Quantidade</label>
       <input type="number" v-model="quantidade" class="form-control mb-2 mr-sm-2" />
@@ -8,13 +8,13 @@
       v-if="!estaNoCarrinhoProp"
       @click.stop="adicionarNoCarrinho({produto, quantidade})"
       type="button"
-      class="btn btn-primary btn-lg btn-block col-9"
+      class="btn btn-primary btn-lg btn-block col-7"
     >Adicionar no carrinho</button>
     <button
       v-else
       @click.stop="removerDoCarrinho(produto.id)"
       type="button"
-      class="btn btn-primary btn-lg btn-block col-9"
+      class="btn btn-primary btn-lg btn-block col-7"
     >Remover do carrinho</button>
   </div>
 </template>

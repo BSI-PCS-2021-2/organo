@@ -1,27 +1,27 @@
 <template>
   <div class="container" style="padding: 30px">
     <div class="row d-flex justify-content-center">
-      <div class="list-group col-8">
+      <div class="list-group col-9">
         <a
           v-for="item in carrinho"
           :key="item.id"
           href="#"
           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
         >
-          <img :src="item.fotoUrl" alt height="60" width="60" />
-          <p class="h4">{{ item.nome }}</p>
+          <img v-bind:src="`${item.fotoUrl}`" alt height="80" width="80" />
+          <p class="font-text">{{ item.nome }}</p>
           <div class="row">
-            <div class="mr-2">
+            <div class="mr-4">
               <p>Preço Unitário</p>
-              <p>${{ item.preco }}</p>
+              <p class="font-text">R$ {{ item.preco }}</p>
             </div>
-            <div class="mr-2">
+            <div class="mr-4">
               <p>Preço Total</p>
-              <p>${{ item.preco * item.quantidade }}</p>
+              <p class="font-text">R$ {{ item.preco * item.quantidade }}</p>
             </div>
             <div>
               <p>Quantidade</p>
-              <p>{{ item.quantidade }}</p>
+              <p class="font-text">{{ item.quantidade }}</p>
             </div>
           </div>
         </a>
@@ -30,8 +30,8 @@
         >
           <p class="h4">Total</p>
           <div>
-            <p>Preço total</p>
-            <p>${{ precoTotal }}</p>
+            <p class="h4">Preço total</p>
+            <p class="font-text"><b>R$ {{ precoTotal }}</b></p>
           </div>
         </div>
         <button

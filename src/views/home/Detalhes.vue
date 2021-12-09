@@ -1,22 +1,22 @@
 <template>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
-      <div class="col-6">
+      <div class="col-2">
         <div class="card text-left shadow-md">
-          <img class="card-img-top" v-bind:src="`${produto.foto_url}`" alt />
+          <img class="card-img-top image-product" v-bind:src="`${produto.foto_url}`" alt />
         </div>
       </div>
-      <div class="col-6 text-left text-justify">
+      <div class="col-3 text-left text-justify">
         <div class="display-3">{{ produto.nome }}</div>
         <p class="lead text-justify">{{ produto.conteudo }}</p>
         <div>
-          <p class="h5">Preço: {{ produto.preco }}</p> 
+          <p class="font-text"><b>Preço:</b> R$ {{ produto.preco }}</p> 
         </div>
         <div>
-          <p class="h5">Validade: {{ produto.validade }}</p>
+          <p class="font-text"><b>Validade:</b> {{ produto.validade }}</p>
         </div>
         <div>
-          <p class="h5">Fornecedor: {{ produto.fornecedor.nomeFantasia }}</p>
+          <p class="font-text"><b>Fornecedor:</b> {{ produto.fornecedor.nomeFantasia }}</p>
         </div>
         <AddCarrinho :produto="produto"/>
       </div>
@@ -51,6 +51,7 @@ export default {
 }
 .image-product {
   width: 100%;
+  padding: 20px !important;
 }
 .card * {
   max-height: 85vh;
