@@ -20,6 +20,11 @@ export function login({ commit }, user) {
                 pedidos: response.data.pedidos
             }
             commit("setComprador", userData)
+            Swal.fire({
+                title: 'Login efetuado com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
             router.push('/')
         } else if(user.type === 'fornecedor') {
             userData = {
@@ -30,10 +35,21 @@ export function login({ commit }, user) {
                 foto: response.data.foto
             }
             commit("setFornecedor", userData)
+            Swal.fire({
+                title: 'Login efetuado com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
             router.push('/fornecedor')
         }
     })
         .catch(function (error) {
+            Swal.fire({
+                title: 'Login com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
             (error)
         });
 }
@@ -52,6 +68,33 @@ export function cadastrarComprador({commit, getters}, compradorCadastro) {
             const comprador = getters.comprador
             commit('setComprador', comprador)  
             setTimeout(router.push('/loginComprador'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Cadastro com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+            console.log(error)
+        });
+}
+
+export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
+    console.log(fornecedorCadastro)
+    let url = "http://localhost:8082/organo/fornecedor/cadastrar"
+    Axios.post(url, fornecedorCadastro).then(function (response) {
+        if(response.status === 201) {
+            Swal.fire({
+                title: 'Fornecedor cadastrado com sucesso!',
+                text: 'Você já pode se logar.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            const fornecedor = getters.fornecedor
+            commit('setFornecedor', fornecedor)  
+            setTimeout(router.push('/loginFornecedor'), 1500)
         }
     })
         .catch(function (error) {

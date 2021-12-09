@@ -76,13 +76,13 @@ export default {
     ...mapGetters("usuario", ["comprador"])
   },
   methods: {
-    ...mapActions("usuario", ["retornaFornecedores", "cadastrarComprador"]),
+    ...mapActions("usuario", ["cadastrarComprador"]),
     cadastraComprador() {
         if(this.nome === "" || this.sobrenome === "" || this.senha === "" || this.email === "" ||
         this.cpf === "" || this.rua === "" || this.numero === "" || this.cep === "") {
-            document.getElementBId("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+            document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
         }
-        document.getElementBId("preenche-campos").value = ""
+        document.getElementById("preenche-campos").value = ""
         const comprador = {
             nome: this.nome,
             sobrenome: this.sobrenome,

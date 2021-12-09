@@ -16,7 +16,8 @@ const routes = [
       { path: 'carrinho', component: () => import('../views/home/Carrinho.vue') },
       { path: 'comprador', component: () => import('../views/usuario/PerfilComprador.vue') },
       { path: 'fornecedor', component: () => import('../views/usuario/PerfilFornecedor.vue') },
-      { path: 'cadastroComprador', component: () => import('../views/usuario/CadastroComprador.vue') }
+      { path: 'cadastroComprador', component: () => import('../views/usuario/CadastroComprador.vue') },
+      { path: 'cadastroFornecedor', component: () => import('../views/usuario/CadastroFornecedor.vue') }
     ]
   },
   {

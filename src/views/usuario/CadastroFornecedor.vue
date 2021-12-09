@@ -1,0 +1,108 @@
+<template>
+  <div>
+    <div class="container" style="padding-top: 10%">
+      <div class="row d-flex justify-content-center">
+        <div class="col-5 text-left login-form-container">
+         <p class="h3">Cadastro de fornecedor:</p>
+          <div class="d-flex justify-content-center">
+            <img src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png" width="150" alt="">
+          </div>
+          <div>
+            <form>
+                <div class="form-group">
+                    <label for="inputEmail">E-mail</label>
+                    <input type="email" v-model="email" class="form-control" id="inputEmail" placeholder="Entre com e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Senha</label>
+                    <input type="password" v-model="senha" class="form-control" id="inputPassword" placeholder="Senha" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Nome</label>
+                    <input type="text" v-model="nomeFantasia" class="form-control" id="inputName" placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputCpf">CNPJ</label>
+                    <input type="" v-model="cnpj" class="form-control" id="inputCnpj" placeholder="CNPJ" maxLength="14" required>
+                </div>
+                <p class="h4"> Informações de entrega </p>
+                <p class="h7"> Selecione as opções de entrega fornecidas por você: </p>
+                <div class="form-check form-switch">
+                    <input v-model="entrega" class="form-check-input" type="checkbox" id="entrega">
+                    <label class="form-check-label" for="entrega">Entrega</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input v-model="retirada" class="form-check-input" type="checkbox" id="retirada">
+                    <label class="form-check-label" for="retirada">Retirada</label>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button @click="cadastraFornecedor()" type="submit" class="btn btn-primary">Cadastrar</button>
+                    <span id="preenche-campos" class="h5"></span>   
+                </div>  
+            </form>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</template> 
+<script>
+import { mapActions, mapGetters } from "vuex";
+export default {
+  name: "CadastroFornecedor",
+  data() {
+    return {
+        cnpj: '',
+        nomeFantasia: '',
+        email: '',
+        senha: '',
+        entrega: false,
+        retirada: false,
+        infoEntrega: ''
+    };
+  },
+  computed: {
+    ...mapGetters("usuario", ["fornecedor"])
+  },
+  methods: {
+    ...mapActions("usuario", ["cadastrarFornecedor"]),
+    cadastraFornecedor() {
+        if(this.nomeFantasia === "" || this.senha === "" || this.email === "" ||
+        this.cnpj === "") {
+            document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+        }
+        document.getElementById("preenche-campos").value = ""
+        if(this.entrega === true && this.retirada === true) {
+            this.infoEntrega = "ENTREGA_E_RETIRADA"
+        } else if(this.entrega === true) {
+            this.infoEntrega = "ENTREGA"
+        } else if(this.retirada === true) {
+            this.infoEntrega = "RETIRADA"
+        }
+        const fornecedor = {
+            nomeFantasia: this.nomeFantasia,
+            email: this.email,
+            senha: this.senha,
+            cnpj: this.cnpj,
+            infoEntrega: this.infoEntrega
+        }
+        this.cadastrarFornecedor(fornecedor)
+    }
+  },
+};
+</script>
+<style>
+input:required {
+    box-shadow:none;
+}
+
+input:invalid {
+    box-shadow:0 0 3px red;
+}
+</style>
+  
+  
+  
+  
+  

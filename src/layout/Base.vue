@@ -2,11 +2,12 @@
   <div>
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top pl-3 pt-0 pb-0">
-	<img	
+        <img	
           src="https://i.imgur.com/jGIvAzn.png"	
           width="170px"	
          />
-	<router-link class="navbar-brand ml-2" to="/">Organo</router-link>
+        <router-link v-if="Object.keys(fornecedor).length === 0" class="navbar-brand ml-2" to="/">Organo</router-link>
+        <p v-if="Object.keys(fornecedor).length !== 0" class="navbar-brand ml-2">Organo</p>
         <div class="ml-auto">
           <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length !== 0 && Object.keys(fornecedor).length === 0">
           <router-link class="btn btn-primary my-2 my-sm-0" to="/comprador">
@@ -17,25 +18,17 @@
             />
             </router-link>
           </div>
-          <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length === 0 && Object.keys(fornecedor).length !== 0">
-            <router-link class="btn btn-primary my-2 my-sm-0" to="/fornecedor">
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"
-                class="img-thumbnail profile-image"
-                alt
-              />
-            </router-link>
-          </div>
           <router-link v-else-if="Object.keys(comprador).length === 0 && Object.keys(fornecedor).length === 0" class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginComprador">Login</router-link>
           <router-link class="btn btn-primary my-2 my-sm-0" to="/carrinho">
               <img
+                v-if="Object.keys(fornecedor).length === 0"
                 src="https://i.imgur.com/lXAH3Yy.png"
                 width="40"
                 alt
               />
-              <span class="badge badge-danger badge-pill">{{ carrinho.length }}</span>
+              <span  v-if="Object.keys(fornecedor).length === 0" class="badge badge-danger badge-pill">{{ carrinho.length }}</span>
           </router-link>
-          <router-link class="btn btn-primary my-2 my-sm-0 navbar-option" v-if="Object.keys(fornecedor).length === 0" to="/loginFornecedor"> Sou fornecedor
+          <router-link class="btn btn-primary my-2 my-sm-0 navbar-option" v-if="Object.keys(fornecedor).length === 0 && Object.keys(comprador).length === 0" to="/loginFornecedor"> Sou fornecedor
           </router-link>
           <button v-if="(comprador && Object.keys(comprador).length !== 0) || (fornecedor && Object.keys(fornecedor).length !== 0)"
           @click="encerrarSessao()"
