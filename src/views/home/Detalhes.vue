@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="col-3 text-left text-justify">
-        <div class="display-3">{{ produto.nome }}</div>
+        <div class="display-3 font-subTitle">{{ produto.nome }}</div>
         <p class="lead text-justify">{{ produto.conteudo }}</p>
         <div>
           <p class="font-text"><b>Preço:</b> R$ {{ produto.preco }}</p> 
