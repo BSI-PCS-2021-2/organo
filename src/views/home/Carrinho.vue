@@ -8,7 +8,12 @@
           href="#"
           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
         >
+          <div v-if="item.fotoUrl">
           <img v-bind:src="`${item.fotoUrl}`" alt height="80" width="80" />
+          </div>
+          <div v-if="item.foto_url">
+            <img v-bind:src="`${item.foto_url}`" alt height="80" width="80" />
+          </div>
           <p class="font-text">{{ item.nome }}</p>
           <div class="row">
             <div class="mr-4">
