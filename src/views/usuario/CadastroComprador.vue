@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" style="padding-top: 10%">
+    <div class="container" style="padding-top: 5%">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
          <p class="h3">Cadastro de comprador:</p>
@@ -11,40 +11,40 @@
             <form>
                 <div class="form-group">
                     <label for="inputEmail">E-mail</label>
-                    <input type="email" v-model="email" class="form-control" id="inputEmail" placeholder="Entre com e-mail" required>
+                    <input type="email" v-model="email" class="form-control font-text form" id="inputEmail" placeholder="Entre com e-mail" required>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword">Senha</label>
-                    <input type="password" v-model="senha" class="form-control" id="inputPassword" placeholder="Senha" required>
+                    <input type="password" v-model="senha" class="form-control font-text form" id="inputPassword" placeholder="Senha" required>
                 </div>
                 <div class="form-group">
                     <label for="inputName">Nome</label>
-                    <input type="text" v-model="nome" class="form-control" id="inputName" placeholder="Nome" required>
+                    <input type="text" v-model="nome" class="form-control font-text form" id="inputName" placeholder="Nome" required>
                 </div>
                 <div class="form-group">
                     <label for="inputLastName">Sobrenome</label>
-                    <input type="text" v-model="sobrenome" class="form-control" id="inputLastName" placeholder="Sobrenome" required>
+                    <input type="text" v-model="sobrenome" class="form-control font-text form" id="inputLastName" placeholder="Sobrenome" required>
                 </div>
                 <div class="form-group">
                     <label for="inputCpf">CPF</label>
-                    <input type="" v-model="cpf" class="form-control" id="inputCpf" placeholder="CPF" maxLength="11" required>
+                    <input type="" v-model="cpf" class="form-control font-text form" id="inputCpf" placeholder="CPF" maxLength="11" required>
                 </div>
                 <p class="h5">Endereço:</p>
                 <div class="form-group">
                     <label for="inputRua">Rua</label>
-                    <input type="text" v-model="rua" class="form-control" id="inputRua" placeholder="Rua" required>
+                    <input type="text" v-model="rua" class="form-control font-text form" id="inputRua" placeholder="Rua" required>
                 </div>
                 <div class="form-group">
                     <label for="inputNumero">Número</label>
-                    <input type="number" v-model="numero" class="form-control" id="inputNumero" placeholder="Número" required>
+                    <input type="number" v-model="numero" class="form-control font-text form" id="inputNumero" placeholder="Número" required>
                 </div>
                 <div class="form-group">
                     <label for="inputComplemento">Complemento (opcional)</label>
-                    <input type="text" v-model="complemento" class="form-control" id="inputComplemento" placeholder="Complemento">
+                    <input type="text" v-model="complemento" class="form-control font-text form" id="inputComplemento" placeholder="Complemento">
                 </div>
                 <div class="form-group">
                     <label for="inputCep">CEP</label>
-                    <input type="text" v-model="cep" class="form-control" id="inputCep" placeholder="CEP" maxLength="8" required>
+                    <input type="text" v-model="cep" class="form-control font-text form" id="inputCep" placeholder="CEP" maxLength="8" required>
                 </div>
                 <button @click="cadastraComprador()" type="submit" class="btn btn-primary">Cadastrar</button>
                 <span id="preenche-campos" class="h5"></span>     
@@ -110,6 +110,9 @@ input:required {
 }
 input:invalid {
     box-shadow:0 0 3px red;
+}
+.form {
+  font-size: 1em !important;
 }
 </style>
   
