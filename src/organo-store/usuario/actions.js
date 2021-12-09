@@ -67,7 +67,7 @@ export function cadastrarComprador({commit, getters}, compradorCadastro) {
               })
             const comprador = getters.comprador
             commit('setComprador', comprador)  
-            setTimeout(router.push('/loginComprador'), 1500)
+            setTimeout(() => router.push('/loginComprador'), 1500)
         }
     })
         .catch(function (error) {
@@ -94,7 +94,7 @@ export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
               })
             const fornecedor = getters.fornecedor
             commit('setFornecedor', fornecedor)  
-            setTimeout(router.push('/loginFornecedor'), 1500)
+            setTimeout(() => router.push('/loginFornecedor'), 1500)
         }
     })
         .catch(function (error) {
