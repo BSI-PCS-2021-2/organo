@@ -15,7 +15,7 @@
                 src="../assets/icons/user_icon.png"
                 alt="Perfil"
                 title="Perfil"
-                ->
+            >
             </router-link>
           </div>
           <router-link v-else-if="Object.keys(comprador).length === 0 && Object.keys(fornecedor).length === 0" class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginComprador">Login</router-link>
