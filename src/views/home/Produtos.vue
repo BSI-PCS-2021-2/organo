@@ -85,7 +85,7 @@ export default {
     background-image: url(https://i.imgur.com/K1EL2gX.png);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 300px;
+    height: 18em;
     width: 100%;
     margin-top: 55px;
 }
