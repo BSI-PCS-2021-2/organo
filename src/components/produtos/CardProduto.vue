@@ -138,6 +138,12 @@ export default {
     background-color: #008542;
 }
 
+.btn.product-button:active {
+    color: #fff !important;
+    background-color: #008542 !important;
+    border: 1px solid #008542 !important;
+}
+
 .btn.product-button.details {
     padding-left: 35px;
     padding-right: 35px;
