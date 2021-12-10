@@ -10,7 +10,7 @@
         <div class="display-3 font-subTitle">{{ produto.nome }}</div>
         <p class="lead text-justify">{{ produto.conteudo }}</p>
         <div>
-          <p class="font-text"><b>Preço:</b> R$ {{ produto.preco }}</p> 
+          <p class="font-text"><b>Preço:</b> R$ {{ produto.preco.toLocaleString(2) }}</p> 
         </div>
         <div>
           <p class="font-text"><b>Validade:</b> {{ produto.validade }}</p>

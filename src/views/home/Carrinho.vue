@@ -18,11 +18,11 @@
           <div class="row">
             <div class="mr-4">
               <p>Preço Unitário</p>
-              <p class="font-text">R$ {{ item.preco }}</p>
+              <p class="font-text">R$ {{ item.preco.toLocaleString(2) }}</p>
             </div>
             <div class="mr-4">
               <p>Preço Total</p>
-              <p class="font-text">R$ {{ item.preco * item.quantidade }}</p>
+              <p class="font-text">R$ {{ (item.preco * item.quantidade).toLocaleString(2) }}</p>
             </div>
             <div>
               <p>Quantidade</p>
@@ -36,7 +36,7 @@
           <p class="h4">Total</p>
           <div>
             <p class="h4">Preço total</p>
-            <p class="font-text"><b>R$ {{ precoTotal }}</b></p>
+            <p class="font-text"><b>R$ {{ precoTotal.toLocaleString(2) }}</b></p>
           </div>
         </div>
         <button

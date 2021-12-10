@@ -1,125 +1,164 @@
 <template>
-  <div>
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top pl-3 pt-0 pb-0">
-        <img	
-          src="https://i.imgur.com/jGIvAzn.png"	
-          width="170px"	
-         />
-        <router-link v-if="Object.keys(fornecedor).length === 0" class="navbar-brand ml-2" to="/">Organo</router-link>
-        <p v-if="Object.keys(fornecedor).length !== 0" class="navbar-brand ml-2">Organo</p>
-        <div class="ml-auto">
-          <div class="btn btn-primary my-2 my-sm-0" v-if="Object.keys(comprador).length !== 0 && Object.keys(fornecedor).length === 0">
-          <router-link class="btn btn-primary my-2 my-sm-0" to="/comprador">
-            <img
-                src="../assets/icons/user_icon.png"
-                alt="Perfil"
-                title="Perfil"
-            >
-            </router-link>
-          </div>
-          <router-link v-else-if="Object.keys(comprador).length === 0 && Object.keys(fornecedor).length === 0" class="btn btn-primary my-2 my-sm-0 navbar-option" to="/loginComprador">Login</router-link>
-          <router-link class="btn btn-primary my-2 my-sm-0" to="/carrinho">
-              <img
-                v-if="Object.keys(fornecedor).length === 0"
-                src="https://i.imgur.com/lXAH3Yy.png"
-                width="40"
-                alt
-              />
-              <span  v-if="Object.keys(fornecedor).length === 0" class="badge badge-danger badge-pill">{{ carrinho.length }}</span>
-          </router-link>
-          <router-link class="btn btn-primary my-2 my-sm-0 navbar-option" v-if="Object.keys(fornecedor).length === 0 && Object.keys(comprador).length === 0" to="/loginFornecedor"> Sou fornecedor
-          </router-link>
-          <button v-if="(comprador && Object.keys(comprador).length !== 0) || (fornecedor && Object.keys(fornecedor).length !== 0)"
-          @click="encerrarSessao()"
-          type="button"
-          class="btn btn-primary my-2 my-sm-0"
-          >Sair</button>
+        <div>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="navbar-container">
+                    <router-link
+                        v-if="Object.keys(fornecedor).length === 0"
+                        to="/"
+                        ><img src="../assets/logo.png" class="navbar-logo"
+                    /></router-link>
+                    <p v-if="Object.keys(fornecedor).length !== 0">
+                        <img src="../assets/logo.png" class="navbar-logo" />
+                    </p>
+                    <div class="ml-auto">
+                        <div
+                            class="btn btn-primary"
+                            v-if="
+                                Object.keys(comprador).length !== 0 &&
+                                Object.keys(fornecedor).length === 0
+                            "
+                        >
+                            <router-link
+                                class="btn btn-primary"
+                                to="/comprador"
+                            >
+                                <img
+                                    src="../assets/icons/user_icon.png"
+                                    alt="Perfil"
+                                    title="Perfil"
+                                />
+                            </router-link>
+                        </div>
+                        <router-link
+                            v-else-if="
+                                Object.keys(comprador).length === 0 &&
+                                Object.keys(fornecedor).length === 0
+                            "
+                            class="btn btn-primary navbar-option"
+                            to="/loginComprador"
+                            >Login</router-link
+                        >
+                        <router-link
+                            class="btn btn-primary navbar-option"
+                            v-if="
+                                Object.keys(fornecedor).length === 0 &&
+                                Object.keys(comprador).length === 0
+                            "
+                            to="/loginFornecedor"
+                        >
+                            Sou fornecedor
+                        </router-link>
+
+                        <router-link
+                            class="btn btn-primary navbar-card"
+                            to="/carrinho"
+                        >
+                            <img
+                                v-if="Object.keys(fornecedor).length === 0"
+                                src="https://i.imgur.com/lXAH3Yy.png"
+                                width="40"
+                                alt
+                            />
+                            <span
+                                v-if="Object.keys(fornecedor).length === 0"
+                                class="badge badge-danger badge-pill"
+                                >{{ carrinho.length }}</span
+                            >
+                        </router-link>
+
+                        <button
+                            v-if="
+                                (comprador &&
+                                    Object.keys(comprador).length !== 0) ||
+                                (fornecedor &&
+                                    Object.keys(fornecedor).length !== 0)
+                            "
+                            @click="encerrarSessao()"
+                            type="button"
+                            class="btn btn-primary navbar-option"
+                        >
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        <div class="page-container">
+            <router-view />
         </div>
-      </nav>
     </div>
-    <div class="page-container">
-      <router-view />
-    </div>
-  </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "Base",
-  computed: {
-    ...mapGetters("usuario", ["comprador", "fornecedor"]),
-    ...mapGetters("produto", ["carrinho"])
-  },
-  methods: {
-    ...mapActions("usuario", ["sair"]),
-    encerrarSessao() {
-      if(Object.keys(this.comprador).length !== 0) {
-        this.sair({ id: this.comprador.id, type: 'comprador'} )
-      } else if(Object.keys(this.fornecedor).length !== 0) {
-        this.sair({ id: this.fornecedor.id, type: 'fornecedor'})
-      }   
-    }
-  },
-
+    name: "Base",
+    computed: {
+        ...mapGetters("usuario", ["comprador", "fornecedor"]),
+        ...mapGetters("produto", ["carrinho"]),
+    },
+    methods: {
+        ...mapActions("usuario", ["sair"]),
+        encerrarSessao() {
+            if (Object.keys(this.comprador).length !== 0) {
+                this.sair({ id: this.comprador.id, type: "comprador" });
+            } else if (Object.keys(this.fornecedor).length !== 0) {
+                this.sair({ id: this.fornecedor.id, type: "fornecedor" });
+            }
+        },
+    },
 };
 </script>
 
 <style>
 nav {
-  background-color: #6aa84f;
-}
-.navbar-brand {
-  font-weight: 500;	
-  font-size: 50px;	
-  color: #ffffff !important;	
-  font-family: 'Poiret One', cursive;	
-  margin-top: -0.15em;	
-  margin-bottom: -0.05em;	
-  padding: 0;
+    background-color: #008542;
+    height: 55px;
 }
 
-.navbar-option {	
-  font-size: 20px;	
+.navbar-card {
+    border: none;
+    border-radius: 0;
 }
+
+.navbar-logo {
+    height: 45px;
+    margin-top: 0.28em;
+}
+
+.navbar-option {
+    margin: 0 !important;
+    font-family: "Source Sans Pro", sans-serif;
+    height: 100% !important;
+    font-size: 18px;
+    border: none;
+    border-radius: 0;
+    padding-top: 12.5px;
+}
+
 .profile-image {
-  width: 50px;
-  border-radius: 100% !important;
+    width: 50px;
+    border-radius: 100% !important;
 }
+
 .page-container {
-  padding-top: 81px;
+    padding-top: 65px;
 }
+
 .btn {
-  border-radius: 0%;
-  font-weight: bold;
-  background: #6aa84f;
-  border: #6aa84f;
-}
-
-.btn-secondary {
-  border-radius: 0%;
-  font-weight: bold;
-  background: rgb(235, 235, 235);
-  border: grey;
-  color: black;
-}
-
-.btn-tertiary {
-  border-radius: 0%;
-  font-weight: bold;
-  background: rgb(95, 95, 95);
-  border: grey;
-  color: rgb(255, 255, 255);
+    margin: 0;
+    font-weight: bold;
+    background: #008542;
 }
 
 .btn:hover {
-  background: #6aa84f;
-  color: black
+    background: #6aa84f;
+    color: black;
 }
+
 input {
-  border-radius: 0%;
+    border-radius: 0%;
 }
+
 .btn:focus {
-  background: #6aa84f;
+    background: #6aa84f;
 }
 </style>

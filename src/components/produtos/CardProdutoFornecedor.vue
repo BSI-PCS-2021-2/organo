@@ -3,7 +3,7 @@
     <img v-bind:src="`${produto.fotoUrl}`" class="card-img-top product-image" />
     <div class="card-body mr-0">
       <h5 class="card-title text-left product-name mb-1">{{ produto.nome }}</h5>
-      <p class="text-left mt-1 product-price">R$ {{ produto.preco.toString() }}</p>
+      <p class="text-left mt-1 product-price">R$ {{ produto.preco.toLocaleString(2) }}</p>
       <div class="row">
         <router-link
           type="button"

@@ -19,3 +19,29 @@
     color: rgb(20, 20, 20) !important;
     font-size: 20px !important;
 }
+
+.products-container {
+    margin: auto;
+    width: 65% !important;
+    height: 100% !important;
+}
+
+.navbar-container {
+    margin: auto;
+    display: flex;
+    width: 65% !important;
+    padding: 0 !important;
+    height: 100%;
+}
+
+.navbar {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+footer {
+    background-color: #008542;
+    margin-top: 40px;
+    height: 150px;
+    width: 100%;
+}
