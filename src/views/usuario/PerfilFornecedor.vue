@@ -14,10 +14,12 @@
         <br>
         <p class="h3" v-if="Object.keys(produtos) !== 0"> Produtos cadastrados: </p>
         <br>
-        <div class="row">
+        <div class="container">
             <div class="mr-2 mb-4" v-for="produto in produtos" :key="produto">
-                <div class="mr-2 mb-4" v-for="p in produto" :key="p.id">
+                <div class="row">
+                  <div class="mr-2 mb-4" v-for="p in produto" :key="p.id">
                     <CardProdutoFornecedor :produto="p" />
+                  </div>
                 </div>
             </div>
         </div>
