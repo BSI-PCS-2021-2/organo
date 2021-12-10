@@ -157,4 +157,12 @@ input {
 .btn:focus {
     background: #6aa84f;
 }
+
+.btn:focus, .btn:active, .btn:visited {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
 </style>

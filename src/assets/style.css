@@ -1,12 +1,10 @@
 .font-title {
-    font-family: 'Poiret One', cursive !important;
     font-weight: 500 !important;
     color: black !important;
     font-size: 40px !important;
 }
 
 .font-subTitle {
-    font-family: 'Poiret One', cursive !important;
     font-weight: 500 !important;
     color: black !important;
     font-size: 30px !important;
@@ -14,7 +12,6 @@
 
 .font-text {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
     font-weight: 500 !important;
     color: rgb(20, 20, 20) !important;
     font-size: 20px !important;
@@ -60,4 +57,16 @@ footer {
 .details-page {
     margin-top: 6%;
     margin-bottom: 4%;
+}
+
+.custom-control:focus {
+    outline: none !important;
+}
+
+input.custom-control-input:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
 }
