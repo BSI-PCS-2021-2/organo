@@ -82,9 +82,9 @@
                     </div>
                 </div>
             </nav>
-        <div class="page-container">
             <router-view />
-        </div>
+        
+        <footer></footer>
     </div>
 </template>
 <script>
@@ -137,10 +137,6 @@ nav {
 .profile-image {
     width: 50px;
     border-radius: 100% !important;
-}
-
-.page-container {
-    padding-top: 65px;
 }
 
 .btn {

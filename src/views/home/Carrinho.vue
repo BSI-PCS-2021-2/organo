@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="padding: 30px">
+  <div class="container card-page" style="padding: 30px">
     <div class="row d-flex justify-content-center">
       <div class="list-group col-9">
         <a

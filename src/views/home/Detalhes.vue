@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="details-page">
     <div class="row d-flex justify-content-center">
       <div class="col-2">
         <div class="card text-left shadow-md">
