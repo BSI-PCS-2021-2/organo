@@ -27,11 +27,6 @@
 import { mapGetters, mapActions } from "vuex";
 import AddCarrinho from "../../components/detalhes/AddCarrinho"
 export default {
-  data () {
-    return {
-      estaNoCarrinhoProp: false,
-    }
-  },
   computed: {
     ...mapGetters("usuario", ["comprador", "fornecedor"]),
     ...mapGetters("produto", ["produto"])

@@ -55,7 +55,6 @@ export function login({ commit }, user) {
 }
 
 export function cadastrarComprador({commit, getters}, compradorCadastro) {
-    console.log(compradorCadastro)
     let url = "http://localhost:8082/organo/comprador/cadastrar"
     Axios.post(url, compradorCadastro).then(function (response) {
         if(response.status === 201) {
@@ -82,7 +81,6 @@ export function cadastrarComprador({commit, getters}, compradorCadastro) {
 }
 
 export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
-    console.log(fornecedorCadastro)
     let url = "http://localhost:8082/organo/fornecedor/cadastrar"
     Axios.post(url, fornecedorCadastro).then(function (response) {
         if(response.status === 201) {

@@ -20,8 +20,6 @@
                     >{{ produto.preco.toLocaleString(2) }}
                 </p>
                 <button
-                    v-if="!estaNoCarrinhoProp"
-                    @click.stop="adicionarNoCarrinho({ produto, quantidade })"
                     type="button"
                     class="btn btn-secondary btn-md product-button details"
                 >
@@ -30,18 +28,6 @@
             </div>
         </div>
     </router-link>
-    <!--
-        <button
-          v-if="!estaNoCarrinhoProp"
-          @click.stop="adicionarNoCarrinho({produto, quantidade})"
-          type="button"
-          class="btn btn-tertiary btn-md product-button card"
-        ><img
-          src="https://i.imgur.com/ceFVghe.png"
-          width="21.5"
-          alt
-        /></button>    
-        -->
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
@@ -50,7 +36,6 @@ export default {
     props: ["produto"],
     data() {
         return {
-            estaNoCarrinhoProp: false,
             quantidade: 1,
         };
     },
@@ -59,23 +44,8 @@ export default {
     },
     methods: {
         ...mapActions("produto", ["adicionarNoCarrinho", "removerDoCarrinho"]),
-        estaNoCarrinho(id) {
-            for (let index = 0; index < this.carrinho.length; index++) {
-                const elemento = this.carrinho[index];
-                if (elemento.id === id) {
-                    return true;
-                }
-            }
-            return false;
-        },
     },
     watch: {
-        produto(val) {
-            this.estaNoCarrinhoProp = this.estaNoCarrinho(val.id);
-        },
-        carrinho() {
-            this.isInCardProp = this.estaNoCarrinho(this.produto.id);
-        },
         quantidade(val) {
             if (val <= 0) {
                 this.quantidade = 1;

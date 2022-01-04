@@ -28,6 +28,14 @@
               <p>Quantidade</p>
               <p class="font-text">{{ item.quantidade }}</p>
             </div>
+            <br>
+            <div>
+                <button
+                    @click="rmProduto(item.id)"
+                    type="button"
+                    class="btn btn-primary btn-lg btn-block col-7 rm-produto"
+                > X </button>
+            </div>
           </div>
         </a>
         <div
@@ -36,7 +44,7 @@
           <p class="h4">Total</p>
           <div>
             <p class="h4">Preço total</p>
-            <p class="font-text"><b>R$ {{ precoTotal.toLocaleString(2) }}</b></p>
+            <p class="font-text"><b id="precoTotal">R$ {{ precoTotal.toLocaleString(2) }}</b></p>
           </div>
         </div>
         <button
@@ -69,6 +77,9 @@ export default {
       });
     },
     checkout() {
+      if(this.precoTotal === 0) {
+        return;
+      }
       const vm = this;
       setTimeout(() => {
         vm.removerDoCarrinho();
@@ -76,6 +87,12 @@ export default {
         vm.$router.push("/");
       }, 2000);
     },
+    rmProduto(id) {
+      this.removerDoCarrinho(id);
+      this.precoTotal = 0;
+      this.calcPreco();
+      document.getElementById("precoTotal").innerHTML = "R$" + this.precoTotal.toLocaleString(2);
+    }
   },
   mounted() {
     this.calcPreco();
@@ -83,3 +100,9 @@ export default {
 };
 </script>
 <style>
+.rm-produto {
+  margin: 10px;
+  width: 100px;
+  float: right;
+}
+</style>
