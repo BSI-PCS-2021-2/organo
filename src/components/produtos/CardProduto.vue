@@ -1,16 +1,18 @@
 <template>
-    <router-link
-        type="button"
-        class="container-product-card"
-        :to="'/detalhes/' + produto.id"
-    >
+    <div>
         <div class="card shadow-sm product-card">
-            <img
-                v-bind:src="`${produto.fotoUrl}`"
-                class="card-img-top product-image"
-                v-bind:tag="`${produto.nome}`"
-                v-bind:title="`${produto.nome}`"
-            />
+            <router-link
+                type="button"
+                class="container-product-card"
+                :to="'/detalhes/' + produto.id"
+            >
+                <img
+                    v-bind:src="`${produto.fotoUrl}`"
+                    class="card-img-top product-image"
+                    v-bind:tag="`${produto.nome}`"
+                    v-bind:title="`${produto.nome}`"
+                />
+            </router-link>
             <div class="card-body">
                 <h5 class="card-title text-left product-name">
                     {{ produto.nome }}
@@ -19,15 +21,16 @@
                     <spam class="real">R$ </spam
                     >{{ produto.preco.toLocaleString(2) }}
                 </p>
-                <button
+                <router-link
                     type="button"
                     class="btn btn-secondary btn-md product-button details"
+                    :to="'/detalhes/' + produto.id"
                 >
                     Adicionar
-                </button>
+                </router-link>
             </div>
         </div>
-    </router-link>
+    </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
