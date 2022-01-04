@@ -1,5 +1,5 @@
 import axios from "axios"
-import router from '../../router'
+//import router from '../../router'
 import Swal from 'sweetalert2'
 
 export function retornarProdutos({ commit, getters }, fornecedorCnpj) {
