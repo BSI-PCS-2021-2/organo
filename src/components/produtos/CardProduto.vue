@@ -1,16 +1,18 @@
 <template>
-    <router-link
-        type="button"
-        class="container-product-card"
-        :to="'/detalhes/' + produto.id"
-    >
+    <div>
         <div class="card shadow-sm product-card">
-            <img
-                v-bind:src="`${produto.fotoUrl}`"
-                class="card-img-top product-image"
-                v-bind:tag="`${produto.nome}`"
-                v-bind:title="`${produto.nome}`"
-            />
+            <router-link
+                type="button"
+                class="container-product-card"
+                :to="'/detalhes/' + produto.id"
+            >
+                <img
+                    v-bind:src="`${produto.fotoUrl}`"
+                    class="card-img-top product-image"
+                    v-bind:tag="`${produto.nome}`"
+                    v-bind:title="`${produto.nome}`"
+                />
+            </router-link>
             <div class="card-body">
                 <h5 class="card-title text-left product-name">
                     {{ produto.nome }}
@@ -29,19 +31,7 @@
                 </button>
             </div>
         </div>
-    </router-link>
-    <!--
-        <button
-          v-if="!estaNoCarrinhoProp"
-          @click.stop="adicionarNoCarrinho({produto, quantidade})"
-          type="button"
-          class="btn btn-tertiary btn-md product-button card"
-        ><img
-          src="https://i.imgur.com/ceFVghe.png"
-          width="21.5"
-          alt
-        /></button>    
-        -->
+    </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";

@@ -1,5 +1,5 @@
 import axios from "axios"
-import router from '../../router'
+//import router from '../../router'
 
 export function retornarProdutos({ commit, getters }, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/listarProdutos`;
@@ -37,7 +37,7 @@ export function adicionarNoCarrinho({ commit, getters }, payload) {
     data["quantidade"] = payload.quantidade
     carrinho.push(data)
     commit("setCarrinho", carrinho)
-    router.push('/carrinho')
+    //router.push('/carrinho')
 }
 
 export function removerDoCarrinho({ commit, getters }, id) {
