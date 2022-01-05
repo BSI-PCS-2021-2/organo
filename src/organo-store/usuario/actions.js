@@ -102,7 +102,6 @@ export function finalizarCompra({commit, getters}, payload) {
                 fotoUrl: i.foto_url,
                 fornecedor: i.fornecedor
             },
-            id: i.id,
             quantidade: i.quantidade
         }
         carrinhoFormatado.push(item)
@@ -128,7 +127,7 @@ export function finalizarCompra({commit, getters}, payload) {
             let fPedidos = getters.fornecedorPedidos
             let cPedidos = getters.compradorPedidos
             fPedidos.push(pedido)
-            commit('setFornecedorPedidos', fPedidos) 
+            commit('setFornecedorPedidos', fPedidos)
             cPedidos.push(pedido)
             commit('setCompradorPedidos', cPedidos) 
             setTimeout(() => router.push('/comprador'), 1500)
@@ -212,4 +211,17 @@ export function sair({ commit }, user) {
     }
     
     router.push('/')
+}
+
+export function estabelecerPedido({ commit, getters }, pedidoId) {
+    if (pedidoId) {
+        let pedido = {}
+        const pedidos = getters.compradorPedidos
+        pedidos.forEach((p) => {
+            if(p.id == pedidoId) {
+                pedido = p
+            }
+        })
+        commit("setCompradorPedido", pedido)
+    } 
 }

@@ -4,6 +4,7 @@ export default function () {
       fornecedor: {},
       fornecedores: [],
       fornecedorPedidos: [],
-      compradorPedidos: []
+      compradorPedidos: [],
+      compradorPedido: {}
     }
 }

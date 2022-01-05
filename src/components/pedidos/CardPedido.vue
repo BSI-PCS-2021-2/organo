@@ -6,6 +6,14 @@
       <p class="h7">Data de entrega: {{ pedido.dataEntrega }}</p>
       <p class="h7">Status: {{ pedido.status }}</p>
       <p class="h7">Método de pagamento: {{ pedido.metodoPagamento }}</p>
+      <router-link
+        type="button"
+        class="btn btn-secondary btn-md product-button details"
+        style="box-sizing:content-box;"
+        :to="'/detalhesPedido/' + pedido.id"
+      >
+      Detalhes
+      </router-link>
     </div>
   </div>
 </template>
