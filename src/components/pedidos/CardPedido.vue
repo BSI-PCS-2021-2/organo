@@ -7,6 +7,7 @@
       <p class="h7">Status: {{ pedido.status }}</p>
       <p class="h7">Método de pagamento: {{ pedido.metodoPagamento }}</p>
       <router-link
+        v-if="Object.keys(comprador).length !== 0"
         type="button"
         class="btn btn-secondary btn-md product-button details"
         style="box-sizing:content-box;"
@@ -14,13 +15,26 @@
       >
       Detalhes
       </router-link>
+      <router-link
+        v-if="Object.keys(fornecedor).length !== 0"
+        type="button"
+        class="btn btn-secondary btn-md product-button details"
+        style="box-sizing:content-box;"
+        :to="'/detalhesPedidoFornecedor/' + pedido.id"
+      >
+      Detalhes
+      </router-link>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
     name: "CardPedido",
-    props: ["pedido"]
+    props: ["pedido"],
+    computed: {
+        ...mapGetters("usuario", ["comprador", "fornecedor"]),
+    },
 };
 </script>
 <style>

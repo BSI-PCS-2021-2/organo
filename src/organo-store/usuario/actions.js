@@ -112,7 +112,8 @@ export function finalizarCompra({commit, getters}, payload) {
         metodoPagamento: payload.metodoPagamento,
         endereco: comprador.enderecos[0],
         status: 'EM_ABERTO',
-        dataEntrega: payload.dataEntrega
+        dataEntrega: payload.dataEntrega,
+        comprador: comprador
 
     }
     let url = `http://localhost:8082/organo/pedido/${fornecedor.cnpj}/registrar/${comprador.cpf}`
@@ -223,5 +224,19 @@ export function estabelecerPedido({ commit, getters }, pedidoId) {
             }
         })
         commit("setCompradorPedido", pedido)
+    } 
+}
+
+export function estabelecerPedidoFornecedor({ commit, getters }, pedidoId) {
+    if (pedidoId) {
+        let pedido = {}
+        const pedidos = getters.fornecedorPedidos
+        pedidos.forEach((p) => {
+            if(p.id == pedidoId) {
+                console.log('entrei')
+                pedido = p
+            }
+        })
+        commit("setFornecedorPedido", pedido)
     } 
 }

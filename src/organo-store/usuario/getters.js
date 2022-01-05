@@ -14,6 +14,10 @@ export function fornecedorPedidos(state) {
     return state.fornecedorPedidos
 }
 
+export function fornecedorPedido(state) {
+    return state.fornecedorPedido
+}
+
 export function compradorPedidos(state) {
     return state.compradorPedidos
 }

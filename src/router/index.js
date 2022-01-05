@@ -21,6 +21,7 @@ const routes = [
             { path: 'loginComprador', component: () => import('../views/usuario/LoginComprador.vue') },
             { path: 'loginFornecedor', component: () => import('../views/usuario/LoginFornecedor.vue') },
             { path: 'detalhesPedido/:idPedido', component: () => import('../views/home/DetalhesPedido.vue') },
+            { path: 'detalhesPedidoFornecedor/:idPedido', component: () => import('../views/home/DetalhesPedidoFornecedor.vue') },
 
         ]
     }

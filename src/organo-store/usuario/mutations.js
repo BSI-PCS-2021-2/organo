@@ -14,6 +14,10 @@ export function setFornecedorPedidos(state, val) {
     state.fornecedorPedidos = val
 }
 
+export function setFornecedorPedido(state, val) {
+    state.fornecedorPedido = val
+}
+
 export function setCompradorPedidos(state, val) {
     state.compradorPedidos = val
 }
