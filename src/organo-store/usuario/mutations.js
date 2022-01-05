@@ -13,3 +13,7 @@ export function setFornecedores(state, val) {
 export function setFornecedorPedidos(state, val) {
     state.fornecedorPedidos = val
 }
+
+export function setCompradorPedidos(state, val) {
+    state.compradorPedidos = val
+}

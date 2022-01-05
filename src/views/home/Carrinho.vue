@@ -80,11 +80,11 @@
                 </div>
                 <br />
                 <label for="metodoDePagamento">Método de pagamento:</label>
-                <select name="metodoDePagamento" id="metodoDePagamento">
-                    <option value="cartaoCredito">Cartão de crédito</option>
-                    <option value="cartaoDebito">Cartão de débito</option>
-                    <option value="pix">Pix</option>
-                    <option value="dinheiro">Dinheiro</option>
+                <select name="metodoDePagamento" id="metodoDePagamento" @change="onChange($event)">
+                    <option value="CARTAO_CREDITO">Cartão de crédito</option>
+                    <option value="CARTAO_DEBITO">Cartão de débito</option>
+                    <option value="PIX">Pix</option>
+                    <option value="DINHEIRO">Dinheiro</option>
                 </select>
                 <br />
 
@@ -106,6 +106,10 @@ export default {
     data() {
         return {
             precoTotal: 0,
+            metodoPagamento: '',
+            onChange(e) {
+              this.metodoPagamento = e.target.value;
+            }
         };
     },
     computed: {
@@ -114,28 +118,33 @@ export default {
     },
     methods: {
         ...mapActions("produto", ["removerDoCarrinho"]),
+        ...mapActions("usuario", ["finalizarCompra"]),
         calcPreco() {
             this.carrinho.forEach((elemento) => {
                 this.precoTotal += elemento.preco * elemento.quantidade;
             });
         },
         checkout() {
-      if(this.precoTotal === 0) {
-        return;
-      }
-            const vm = this;
-            setTimeout(() => {
-                vm.removerDoCarrinho();
-                alert("Compra finalizada com sucesso!");
-                vm.$router.push("/");
-            }, 2000);
+            if(this.precoTotal === 0) {
+                return;
+            }
+            if(this.metodoPagamento === '') {
+                this.metodoPagamento = 'CARTAO_CREDITO'
+            }
+            const payload = {
+                carrinho: this.carrinho,
+                precoTotal: this.precoTotal,
+                metodoPagamento: this.metodoPagamento,
+                dataEntrega: ''
+            }
+            this.finalizarCompra(payload);
         },
-    rmProduto(id) {
-      this.removerDoCarrinho(id);
-      this.precoTotal = 0;
-      this.calcPreco();
-      document.getElementById("precoTotal").innerHTML = "R$" + this.precoTotal.toLocaleString(2);
-    }
+        rmProduto(id) {
+            this.removerDoCarrinho(id);
+            this.precoTotal = 0;
+            this.calcPreco();
+            document.getElementById("precoTotal").innerHTML = "R$" + this.precoTotal.toLocaleString(2);
+        }
     },
     mounted() {
         this.calcPreco();

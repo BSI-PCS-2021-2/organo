@@ -2,10 +2,10 @@
   <div class="card mb-4 shadow-sm">
     <img src="https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-24-512.png" class="card-img-top pedido-image" />
     <div class="card-body">
-      <h5 class="card-title text-left">Id: {{ pedido.id }}</h5>
-      <p class="h7">Valor: {{ pedido.valor }} reais</p>
+      <p class="h7">Valor: {{ pedido.valor.toLocaleString(2) }} reais</p>
       <p class="h7">Data de entrega: {{ pedido.dataEntrega }}</p>
       <p class="h7">Status: {{ pedido.status }}</p>
+      <p class="h7">Método de pagamento: {{ pedido.metodoPagamento }}</p>
     </div>
   </div>
 </template>

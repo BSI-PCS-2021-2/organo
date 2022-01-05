@@ -80,6 +80,71 @@ export function cadastrarComprador({commit, getters}, compradorCadastro) {
         });
 }
 
+export function finalizarCompra({commit, getters}, payload) {
+    let comprador = getters.comprador
+    if(Object.keys(comprador).length === 0) {
+        Swal.fire({
+            title: 'Não foi possível finalizar a compra',
+            text: 'Por favor, se autentique primeiro.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+          return
+    }
+    let fornecedor = payload.carrinho[0].fornecedor
+    let carrinhoFormatado = []
+    payload.carrinho.forEach((i) => {
+        const item = {
+            produto: {
+                validade: i.validade,
+                nome: i.nome,
+                preco: i.preco,
+                fotoUrl: i.foto_url,
+                fornecedor: i.fornecedor
+            },
+            id: i.id,
+            quantidade: i.quantidade
+        }
+        carrinhoFormatado.push(item)
+    })
+    let pedido = {
+        itens: carrinhoFormatado,
+        valor: payload.precoTotal,
+        metodoPagamento: payload.metodoPagamento,
+        endereco: comprador.enderecos[0],
+        status: 'EM_ABERTO',
+        dataEntrega: payload.dataEntrega
+
+    }
+    let url = `http://localhost:8082/organo/pedido/${fornecedor.cnpj}/registrar/${comprador.cpf}`
+    Axios.post(url, pedido).then(function (response) {
+        if(response.status === 201) {
+            Swal.fire({
+                title: 'Pedido registrado com sucesso!',
+                text: 'Você já pode acompanhar o status do seu pedido.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })  
+            let fPedidos = getters.fornecedorPedidos
+            let cPedidos = getters.compradorPedidos
+            fPedidos.push(pedido)
+            commit('setFornecedorPedidos', fPedidos) 
+            cPedidos.push(pedido)
+            commit('setCompradorPedidos', cPedidos) 
+            setTimeout(() => router.push('/comprador'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Erro na criação do pedido',
+                text: 'Por favor, tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+            console.log(error)
+        });
+}
+
 export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
     let url = "http://localhost:8082/organo/fornecedor/cadastrar"
     Axios.post(url, fornecedorCadastro).then(function (response) {
@@ -120,6 +185,16 @@ export function retornarPedidos({ commit }, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/listarPedidos`;
     Axios.get(url).then(function (response) {
         commit("setFornecedorPedidos", response.data)
+    })
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
+export function retornarCompradorPedidos({ commit }, compradorCpf) {
+    let url = `http://localhost:8082/organo/comprador/${compradorCpf}/listarPedidos`;
+    Axios.get(url).then(function (response) {
+        commit("setCompradorPedidos", response.data)
     })
         .catch(function (error) {
             console.log(error)

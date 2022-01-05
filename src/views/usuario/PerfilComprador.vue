@@ -17,7 +17,7 @@
         </div>
         <p class="font-subTitle mt-5 mb-5" v-if="comprador.pedidos">Pedidos</p>
         <div class="row">
-            <div class="col-md-4 font-subTitle" v-for="pedido in comprador.pedidos" :key="pedido.id">
+            <div class="col-md-4 font-subTitle" v-for="pedido in compradorPedidos" :key="pedido.id">
                 <CardPedido :pedido="pedido" />
             </div>
         </div>
@@ -26,14 +26,20 @@
   </div>
 </template>
 <script>
-import { mapGetters} from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import CardPedido from "../../components/pedidos/CardPedido";
 
 export default {
   computed: {
-    ...mapGetters("usuario", ["comprador"]),
+    ...mapGetters("usuario", ["comprador", "compradorPedidos"])
   },
-   components: { CardPedido },
+  methods: {
+    ...mapActions("usuario", ["retornarCompradorPedidos"]),
+  },
+  components: { CardPedido },
+  mounted() {
+      this.retornarCompradorPedidos(this.comprador.cpf)
+  }
 };
 </script>
 <style>

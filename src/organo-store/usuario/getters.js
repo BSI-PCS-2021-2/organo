@@ -13,3 +13,7 @@ export function fornecedores(state) {
 export function fornecedorPedidos(state) {
     return state.fornecedorPedidos
 }
+
+export function compradorPedidos(state) {
+    return state.compradorPedidos
+}
