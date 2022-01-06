@@ -81,6 +81,7 @@ export default {
         if(this.nome === "" || this.sobrenome === "" || this.senha === "" || this.email === "" ||
         this.cpf === "" || this.rua === "" || this.numero === "" || this.cep === "") {
             document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+            return;
         }
         document.getElementById("preenche-campos").value = ""
         const comprador = {

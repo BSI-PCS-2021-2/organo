@@ -71,6 +71,7 @@ export default {
         if(this.nomeFantasia === "" || this.senha === "" || this.email === "" ||
         this.cnpj === "") {
             document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+            return;
         }
         document.getElementById("preenche-campos").value = ""
         if(this.entrega === true && this.retirada === true) {

@@ -30,6 +30,7 @@
                     <input type="text" v-model="quantidade" class="form-control font-text form" id="inputQuantidade" placeholder="Quantidade disponível" required>
                 </div>
                 <button @click="cadastro()" type="submit" class="btn btn-primary">Cadastrar</button>
+                <span id="preenche-campos" class="h5"></span>
                 <br>  
             </form>
           </div>  
@@ -58,6 +59,11 @@ export default {
   methods: {
     ...mapActions("usuario", ["cadastrarProduto"]),
     cadastro() {
+      if(this.nome === "" || this.preco === "" || this.dataValidade === "" || this.fotoUrl === "") {
+            document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
+            return;
+      }
+      document.getElementById("preenche-campos").value = ""
       this.preco = this.preco.replace(/,/g, '.');
       let payload = {
         cnpjFornecedor: this.$route.params.cnpjFornecedor,
