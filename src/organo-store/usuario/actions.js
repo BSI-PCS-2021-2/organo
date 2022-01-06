@@ -268,7 +268,7 @@ export function cadastrarProduto({ getters }, payload) {
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 })
-                router.push('/fornecedor')
+                setTimeout(() => router.push('/fornecedor'), 1500)
             }
         })
             .catch(function (error) {
