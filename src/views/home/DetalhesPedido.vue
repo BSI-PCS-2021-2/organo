@@ -6,11 +6,11 @@
         <br>
         <p class="display-7">Fornecedor: {{ compradorPedido.itens[0].produto.fornecedor.nomeFantasia }}</p>
         <br>
-        <p class="display-7">Método de pagamento: {{ compradorPedido.metodoPagamento }}</p>
+        <p class="display-7">Método de pagamento: {{ compradorPedido.metodoPagamento.replace(/_/g, ' DE ') }}</p>
         <br>
         <p class="display-7">Valor total: R$ {{ compradorPedido.valor.toLocaleString(2) }}</p>
         <br>
-        <p class="display-7">Status: {{ compradorPedido.status }}</p>
+        <p class="display-7">Status: {{ compradorPedido.status.replace(/_/g, ' ') }}</p>
         <br>
         <p class="display-7">Data de entrega: {{ compradorPedido.dataEntrega }}</p>
         <br>

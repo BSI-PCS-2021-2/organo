@@ -4,8 +4,8 @@
     <div class="card-body">
       <p class="h7">Valor: {{ pedido.valor.toLocaleString(2) }} reais</p>
       <p class="h7">Data de entrega: {{ pedido.dataEntrega }}</p>
-      <p class="h7">Status: {{ pedido.status }}</p>
-      <p class="h7">Método de pagamento: {{ pedido.metodoPagamento }}</p>
+      <p class="h7">Status: {{ pedido.status.replace(/_/g, ' ')}}</p>
+      <p class="h7">Método de pagamento: {{ pedido.metodoPagamento.replace(/_/g, ' DE ') }}</p>
       <router-link
         v-if="Object.keys(comprador).length !== 0"
         type="button"

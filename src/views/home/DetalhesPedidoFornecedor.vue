@@ -4,11 +4,11 @@
       <div class="col-6 text-left text-justify">
         <div class="display-4">Pedido: {{ fornecedorPedido.id }} </div>
         <br>
-        <p class="display-7">Método de pagamento: {{ fornecedorPedido.metodoPagamento }}</p>
+        <p class="display-7">Método de pagamento: {{ fornecedorPedido.metodoPagamento.replace(/_/g, ' ') }}</p>
         <br>
         <p class="display-7">Valor total: R$ {{ fornecedorPedido.valor.toLocaleString(2) }}</p>
         <br>
-        <p class="display-7">Status: {{ fornecedorPedido.status }}</p>
+        <p class="display-7">Status: {{ fornecedorPedido.status.replace(/_/g, ' DE ') }}</p>
         <br>
         <p class="display-7">Data de entrega: {{ fornecedorPedido.dataEntrega }}</p>
         <br>
