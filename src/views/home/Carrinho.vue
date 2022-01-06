@@ -117,7 +117,7 @@ export default {
         ...mapGetters("usuario", ["comprador"]),
     },
     methods: {
-        ...mapActions("produto", ["removerDoCarrinho", "depoisDaCompra"]),
+        ...mapActions("produto", ["removerDoCarrinho"]),
         ...mapActions("usuario", ["finalizarCompra"]),
         calcPreco() {
             this.carrinho.forEach((elemento) => {
@@ -139,7 +139,6 @@ export default {
                 dataEntrega: ''
             }
             this.finalizarCompra(payload);
-            this.depoisDaCompra();
         },
         rmProduto(id) {
             this.removerDoCarrinho(id);

@@ -101,10 +101,3 @@ export function esvaziarProdutos({commit, getters}) {
     produtos = []
     commit("setProdutos", produtos)
 }
-
-export function depoisDaCompra({commit, getters}) {
-    let carrinho = getters.carrinho
-    carrinho = []
-    commit("setCarrinho", carrinho)
-    setTimeout(() => router.push('/comprador'), 1500)
-}
