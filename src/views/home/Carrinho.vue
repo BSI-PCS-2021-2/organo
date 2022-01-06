@@ -117,7 +117,7 @@ export default {
         ...mapGetters("usuario", ["comprador"]),
     },
     methods: {
-        ...mapActions("produto", ["removerDoCarrinho"]),
+        ...mapActions("produto", ["removerDoCarrinho", "depoisDaCompra"]),
         ...mapActions("usuario", ["finalizarCompra"]),
         calcPreco() {
             this.carrinho.forEach((elemento) => {
@@ -128,6 +128,7 @@ export default {
             if(this.precoTotal === 0) {
                 return;
             }
+
             if(this.metodoPagamento === '') {
                 this.metodoPagamento = 'CARTAO_CREDITO'
             }
@@ -138,6 +139,7 @@ export default {
                 dataEntrega: ''
             }
             this.finalizarCompra(payload);
+            this.depoisDaCompra();
         },
         rmProduto(id) {
             this.removerDoCarrinho(id);

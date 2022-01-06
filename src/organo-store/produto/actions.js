@@ -24,7 +24,8 @@ export function detalhesProduto({ commit }, id, fornecedorCnpj) {
             preco: response.data.preco,
             validade: response.data.validade,
             foto_url: response.data.fotoUrl,
-            fornecedor: response.data.fornecedor
+            fornecedor: response.data.fornecedor,
+            quantidade: response.data.quantidade
         }
         commit("setProduto", produtoData);
     }).catch(function (error) {
@@ -47,12 +48,22 @@ export function adicionarNoCarrinho({ commit, getters }, payload) {
               })
               return
         }
+        if(data.quantidade < payload.quantidade) {
+            Swal.fire({
+                title: 'Não foi possível adicionar este produto no carrinho',
+                text: `Esta quantidade de itens não está disponível. Somente ${data.quantidade} disponível(eis).`,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+              return
+        }
     }
+
     let encontrado = false;
     carrinho.forEach((item) => {
         if(item.id === data.id) {
             encontrado = true;
-            item.quantidade = item.quantidade + payload.quantidade
+            item.quantidade = parseFloat(item.quantidade) + parseFloat(payload.quantidade)
         }
     })
     if(encontrado) {
@@ -89,4 +100,11 @@ export function esvaziarProdutos({commit, getters}) {
     let produtos = getters.produtos
     produtos = []
     commit("setProdutos", produtos)
+}
+
+export function depoisDaCompra({commit, getters}) {
+    let carrinho = getters.carrinho
+    carrinho = []
+    commit("setCarrinho", carrinho)
+    setTimeout(() => router.push('/comprador'), 1500)
 }

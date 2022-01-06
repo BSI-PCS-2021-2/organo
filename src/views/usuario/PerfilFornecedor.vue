@@ -12,7 +12,16 @@
           <p class="h5">E-mail: {{ fornecedor.email }}</p>
         </div>
         <br>
-        <p class="h3" v-if="Object.keys(produtos) !== 0"> Produtos cadastrados: </p>
+        <div class="row mt-4">
+          <p class="h3" v-if="Object.keys(produtos) !== 0"> Produtos cadastrados: </p>
+          <router-link
+            type="button"
+            class="btn btn-secondary btn-md product-button details"
+            :to="'/cadastroProduto/' + fornecedor.cnpj"
+          >
+          Cadastrar produto
+          </router-link>
+        </div>
         <br>
         <div class="container">
             <div class="mr-2 mb-4" v-for="produto in produtos" :key="produto">

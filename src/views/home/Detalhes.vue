@@ -16,6 +16,9 @@
           <p class="font-text"><b>Validade:</b> {{ produto.validade }}</p>
         </div>
         <div>
+          <p class="font-text"><b>Quantidade:</b> {{ produto.quantidade }}</p>
+        </div>
+        <div>
           <p class="font-text"><b>Fornecedor:</b> {{ produto.fornecedor.nomeFantasia }}</p>
         </div>
         <AddCarrinho :produto="produto"/>

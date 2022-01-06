@@ -1,6 +1,8 @@
 import router from '../../router'
 import Axios from 'axios';
 import Swal from 'sweetalert2'
+import moment from 'moment'
+
 export function login({ commit }, user) {
     const usuario = {
         email: user.email,
@@ -9,7 +11,7 @@ export function login({ commit }, user) {
     let url = `http://localhost:8082/organo/${user.type}/autenticar`
     Axios.post(url, usuario).then(function (response) {
         let userData = null;
-        if(user.type === 'comprador') {
+        if (user.type === 'comprador') {
             userData = {
                 nome: response.data.nome,
                 sobrenome: response.data.sobrenome,
@@ -26,7 +28,7 @@ export function login({ commit }, user) {
                 confirmButtonText: 'Ok'
             })
             router.push('/')
-        } else if(user.type === 'fornecedor') {
+        } else if (user.type === 'fornecedor') {
             userData = {
                 nomeFantasia: response.data.nomeFantasia,
                 email: response.data.email,
@@ -39,7 +41,7 @@ export function login({ commit }, user) {
                 title: 'Login efetuado com sucesso!',
                 icon: 'success',
                 confirmButtonText: 'Ok'
-              })
+            })
             router.push('/fornecedor')
         }
     })
@@ -49,23 +51,23 @@ export function login({ commit }, user) {
                 text: 'Tente novamente.',
                 icon: 'error',
                 confirmButtonText: 'Ok'
-              })
+            })
             console.log(error)
         });
 }
 
-export function cadastrarComprador({commit, getters}, compradorCadastro) {
+export function cadastrarComprador({ commit, getters }, compradorCadastro) {
     let url = "http://localhost:8082/organo/comprador/cadastrar"
     Axios.post(url, compradorCadastro).then(function (response) {
-        if(response.status === 201) {
+        if (response.status === 201) {
             Swal.fire({
                 title: 'Comprador cadastrado com sucesso!',
                 text: 'Você já pode se logar.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
-              })
+            })
             const comprador = getters.comprador
-            commit('setComprador', comprador)  
+            commit('setComprador', comprador)
             setTimeout(() => router.push('/loginComprador'), 1500)
         }
     })
@@ -75,21 +77,21 @@ export function cadastrarComprador({commit, getters}, compradorCadastro) {
                 text: 'Tente novamente.',
                 icon: 'error',
                 confirmButtonText: 'Ok'
-              })
+            })
             console.log(error)
         });
 }
 
-export function finalizarCompra({commit, getters}, payload) {
+export function finalizarCompra({ commit, getters }, payload) {
     let comprador = getters.comprador
-    if(Object.keys(comprador).length === 0) {
+    if (Object.keys(comprador).length === 0) {
         Swal.fire({
             title: 'Não foi possível finalizar a compra',
             text: 'Por favor, se autentique primeiro.',
             icon: 'error',
             confirmButtonText: 'Ok'
-          })
-          return
+        })
+        return
     }
     let fornecedor = payload.carrinho[0].fornecedor
     let carrinhoFormatado = []
@@ -118,20 +120,19 @@ export function finalizarCompra({commit, getters}, payload) {
     }
     let url = `http://localhost:8082/organo/pedido/${fornecedor.cnpj}/registrar/${comprador.cpf}`
     Axios.post(url, pedido).then(function (response) {
-        if(response.status === 201) {
+        if (response.status === 201) {
             Swal.fire({
                 title: 'Pedido registrado com sucesso!',
                 text: 'Você já pode acompanhar o status do seu pedido.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
-              })  
+            })
             let fPedidos = getters.fornecedorPedidos
             let cPedidos = getters.compradorPedidos
             fPedidos.push(pedido)
             commit('setFornecedorPedidos', fPedidos)
             cPedidos.push(pedido)
-            commit('setCompradorPedidos', cPedidos) 
-            setTimeout(() => router.push('/comprador'), 1500)
+            commit('setCompradorPedidos', cPedidos)
         }
     })
         .catch(function (error) {
@@ -140,23 +141,23 @@ export function finalizarCompra({commit, getters}, payload) {
                 text: 'Por favor, tente novamente.',
                 icon: 'error',
                 confirmButtonText: 'Ok'
-              })
+            })
             console.log(error)
         });
 }
 
-export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
+export function cadastrarFornecedor({ commit, getters }, fornecedorCadastro) {
     let url = "http://localhost:8082/organo/fornecedor/cadastrar"
     Axios.post(url, fornecedorCadastro).then(function (response) {
-        if(response.status === 201) {
+        if (response.status === 201) {
             Swal.fire({
                 title: 'Fornecedor cadastrado com sucesso!',
                 text: 'Você já pode se logar.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
-              })
+            })
             const fornecedor = getters.fornecedor
-            commit('setFornecedor', fornecedor)  
+            commit('setFornecedor', fornecedor)
             setTimeout(() => router.push('/loginFornecedor'), 1500)
         }
     })
@@ -166,7 +167,7 @@ export function cadastrarFornecedor({commit, getters}, fornecedorCadastro) {
                 text: 'Tente novamente.',
                 icon: 'error',
                 confirmButtonText: 'Ok'
-              })
+            })
             console.log(error)
         });
 }
@@ -204,13 +205,13 @@ export function retornarCompradorPedidos({ commit }, compradorCpf) {
 export function sair({ commit }, user) {
     let usuario = {}
     if (user.id) {
-        if(user.type === 'fornecedor') {
+        if (user.type === 'fornecedor') {
             commit("setFornecedor", usuario)
-        } else if(user.type === 'comprador') {
+        } else if (user.type === 'comprador') {
             commit("setComprador", usuario)
         }
     }
-    
+
     router.push('/')
 }
 
@@ -219,12 +220,12 @@ export function estabelecerPedido({ commit, getters }, pedidoId) {
         let pedido = {}
         const pedidos = getters.compradorPedidos
         pedidos.forEach((p) => {
-            if(p.id == pedidoId) {
+            if (p.id == pedidoId) {
                 pedido = p
             }
         })
         commit("setCompradorPedido", pedido)
-    } 
+    }
 }
 
 export function estabelecerPedidoFornecedor({ commit, getters }, pedidoId) {
@@ -232,11 +233,50 @@ export function estabelecerPedidoFornecedor({ commit, getters }, pedidoId) {
         let pedido = {}
         const pedidos = getters.fornecedorPedidos
         pedidos.forEach((p) => {
-            if(p.id == pedidoId) {
-                console.log('entrei')
+            if (p.id == pedidoId) {
                 pedido = p
             }
         })
         commit("setFornecedorPedido", pedido)
-    } 
+    }
+}
+
+export function cadastrarProduto({ getters }, payload) {
+    const fornecedor = getters.fornecedor
+    const cnpjFornecedor = payload.cnpjFornecedor
+    if (fornecedor.cnpj == cnpjFornecedor) {
+        let todayDate = new Date();
+        let valDate = new Date(payload.produto.dataValidade);
+        if (todayDate > valDate) {
+            Swal.fire({
+                title: 'Cadastro com erro.',
+                text: 'Produto fora da validade.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return
+        }
+        payload.produto.dataValidade = moment(payload.produto.dataValidade).format('DD/MM/YYYY');
+        const produto = payload.produto
+        let url = `http://localhost:8082/organo/produto/${cnpjFornecedor}/cadastrar`;
+        Axios.post(url, produto).then(function (response) {
+            if (response.status === 201) {
+                Swal.fire({
+                    title: 'Produto cadastrado com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
+                router.push('/fornecedor')
+            }
+        })
+            .catch(function (error) {
+                Swal.fire({
+                    title: 'Cadastro com erro',
+                    text: 'Tente novamente.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+                console.log(error)
+            });
+    }
 }

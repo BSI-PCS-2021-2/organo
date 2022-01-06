@@ -22,6 +22,7 @@ const routes = [
             { path: 'loginFornecedor', component: () => import('../views/usuario/LoginFornecedor.vue') },
             { path: 'detalhesPedido/:idPedido', component: () => import('../views/home/DetalhesPedido.vue') },
             { path: 'detalhesPedidoFornecedor/:idPedido', component: () => import('../views/home/DetalhesPedidoFornecedor.vue') },
+            { path: 'cadastroProduto/:cnpjFornecedor', component: () => import('../views/home/CadastroProduto.vue') },
 
         ]
     }
