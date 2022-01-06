@@ -248,7 +248,7 @@ export function cadastrarProduto({ getters }, payload) {
     const cnpjFornecedor = payload.cnpjFornecedor
     if (fornecedor.cnpj == cnpjFornecedor) {
         let todayDate = new Date();
-        let valDate = new Date(payload.produto.dataValidade);
+        let valDate = new Date(payload.produto.validade);
         if (todayDate > valDate) {
             Swal.fire({
                 title: 'Cadastro com erro.',
@@ -258,7 +258,6 @@ export function cadastrarProduto({ getters }, payload) {
             })
             return
         }
-        payload.produto.dataValidade = moment(payload.produto.dataValidade).format('DD/MM/YYYY');
         const produto = payload.produto
         let url = `http://localhost:8082/organo/produto/${cnpjFornecedor}/cadastrar`;
         Axios.post(url, produto).then(function (response) {

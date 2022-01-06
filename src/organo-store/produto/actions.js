@@ -48,15 +48,16 @@ export function adicionarNoCarrinho({ commit, getters }, payload) {
               })
               return
         }
-        if(data.quantidade < payload.quantidade) {
-            Swal.fire({
-                title: 'Não foi possível adicionar este produto no carrinho',
-                text: `Esta quantidade de itens não está disponível. Somente ${data.quantidade} disponível(eis).`,
-                icon: 'error',
-                confirmButtonText: 'Ok'
-              })
-              return
-        }
+    }
+
+    if(parseInt(data.quantidade) < parseInt(payload.quantidade)) {
+        Swal.fire({
+            title: 'Não foi possível adicionar este produto no carrinho',
+            text: `Esta quantidade de itens não está disponível. Somente ${data.quantidade} disponível(eis).`,
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+          return
     }
 
     let encontrado = false;

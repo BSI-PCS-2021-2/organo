@@ -18,8 +18,8 @@
                     <input type="text" v-model="preco" class="form-control font-text form" id="inputPreco" placeholder="Preço do produto" required>
                 </div>
                 <div class="form-group">
-                    <label for="inputDataValidade">Data de validade</label>
-                    <input type="date" v-model="dataValidade" class="form-control font-text form" id="inputDataValidade" placeholder="Data de validade" required>
+                    <label for="inputValidade">Data de validade</label>
+                    <input type="date" v-model="validade" class="form-control font-text form" id="inputValidade" placeholder="Data de validade" required>
                 </div>
                 <div class="form-group">
                     <label for="inputFotoUrl">URL da Imagem</label>
@@ -47,7 +47,7 @@ export default {
     return {
         nome: '',
         preco: '',
-        dataValidade: '',
+        validade: '',
         fotoUrl: '',
         quantidade: 1
     };
@@ -59,7 +59,7 @@ export default {
   methods: {
     ...mapActions("usuario", ["cadastrarProduto"]),
     cadastro() {
-      if(this.nome === "" || this.preco === "" || this.dataValidade === "" || this.fotoUrl === "") {
+      if(this.nome === "" || this.preco === "" || this.validade === "" || this.fotoUrl === "") {
             document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
             return;
       }
@@ -70,7 +70,7 @@ export default {
         produto: {
           nome: this.nome,
           preco: this.preco,
-          dataValidade: this.dataValidade,
+          validade: this.validade,
           fotoUrl: this.fotoUrl,
           quantidade: this.quantidade,
           fornecedor: this.fornecedor

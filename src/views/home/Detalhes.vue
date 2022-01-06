@@ -13,7 +13,7 @@
           <p class="font-text"><b>Preço:</b> R$ {{ produto.preco.toLocaleString(2) }}</p> 
         </div>
         <div>
-          <p class="font-text"><b>Validade:</b> {{ produto.validade }}</p>
+          <p class="font-text"><b>Validade:</b> {{ this.dataValidade }}</p>
         </div>
         <div>
           <p class="font-text"><b>Quantidade:</b> {{ produto.quantidade }}</p>
@@ -29,7 +29,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddCarrinho from "../../components/detalhes/AddCarrinho"
+import moment from 'moment'
 export default {
+  data() {
+    return {
+      dataValidade: '',
+    };
+  },
   computed: {
     ...mapGetters("usuario", ["comprador", "fornecedor"]),
     ...mapGetters("produto", ["produto"])
@@ -40,6 +46,7 @@ export default {
   },
   mounted() {
     this.detalhesProduto(this.$route.params.idProduto);
+    this.dataValidade = moment(this.produto.validade).format("DD/MM/YYYY");
   }
 };
 </script>
