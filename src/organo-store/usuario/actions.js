@@ -1,7 +1,6 @@
 import router from '../../router'
 import Axios from 'axios';
 import Swal from 'sweetalert2'
-import moment from 'moment'
 
 export function login({ commit }, user) {
     const usuario = {
