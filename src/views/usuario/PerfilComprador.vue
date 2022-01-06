@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid mt-5 mb-5">
     <div class="row d-flex justify-content-center">
       <div class="col-6 text-left text-justify">
         <div class="display-4 mb-4 font-title">Perfil do comprador </div>
@@ -44,7 +44,7 @@ export default {
 </script>
 <style>
 .container-fluid {
-  padding: 30px;
+  padding: 100px;
 }
 .image-product {
   width: 100%;
