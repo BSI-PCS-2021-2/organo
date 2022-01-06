@@ -133,6 +133,7 @@ export function finalizarCompra({ commit, getters }, payload) {
             commit('setFornecedorPedidos', fPedidos)
             cPedidos.push(pedido)
             commit('setCompradorPedidos', cPedidos)
+            commit('produto/setCarrinho', [], { root: true })
             router.push('/comprador')
         }
     })
