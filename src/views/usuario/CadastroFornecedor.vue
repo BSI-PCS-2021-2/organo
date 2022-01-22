@@ -25,6 +25,10 @@
                     <label for="inputCpf">CNPJ</label>
                     <input type="" v-model="cnpj" class="form-control" id="inputCnpj" placeholder="CNPJ" maxLength="14" required>
                 </div>
+                <div class="form-group">
+                    <label for="inputTelefoneMovel">Telefone móvel</label>
+                    <input type="phone" v-model="telefoneMovel" class="form-control" id="inputTelefoneMovel" placeholder="Ex: 21999999999" maxLength="11">
+                </div>
                 <p class="h4"> Informações de entrega </p>
                 <p class="h7"> Selecione as opções de entrega fornecidas por você: </p>
                 <div class="form-check form-switch">
@@ -34,6 +38,20 @@
                 <div class="form-check form-switch">
                     <input v-model="retirada" class="form-check-input" type="checkbox" id="retirada">
                     <label class="form-check-label" for="retirada">Retirada</label>
+                </div>
+                <br>
+                <p class="h5"> Horários de entrega/retirada: </p>
+                <div class="form-check form-switch">
+                    <input v-model="manha" class="form-check-input" type="checkbox" id="manha">
+                    <label class="form-check-label" for="manha">Manhã, de 9h às 12h</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input v-model="tarde" class="form-check-input" type="checkbox" id="tarde">
+                    <label class="form-check-label" for="tarde">Tarde, de 13h às 17h</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input v-model="noite" class="form-check-input" type="checkbox" id="noite">
+                    <label class="form-check-label" for="noite">Noite, de 18h às 22h</label>
                 </div>
                 <br>
                 <div class="form-group">
@@ -59,7 +77,11 @@ export default {
         senha: '',
         entrega: false,
         retirada: false,
-        infoEntrega: ''
+        infoEntrega: '',
+        telefoneMovel: '',
+        manha: '',
+        tarde: '',
+        noite: ''
     };
   },
   computed: {
@@ -81,12 +103,30 @@ export default {
         } else if(this.retirada === true) {
             this.infoEntrega = "RETIRADA"
         }
+
+        let infosHorarios = []
+        if(this.manha) infosHorarios.push({
+          horarioSelecionado: 'MANHA',
+          fornecedor: this.fornecedor
+        })
+        if(this.tarde) infosHorarios.push({
+          horarioSelecionado: 'TARDE',
+          fornecedor: this.fornecedor
+        })
+        if(this.noite) infosHorarios.push({
+          horarioSelecionado: 'NOITE',
+          fornecedor: this.fornecedor
+        })
+
         const fornecedor = {
             nomeFantasia: this.nomeFantasia,
             email: this.email,
             senha: this.senha,
             cnpj: this.cnpj,
-            infoEntrega: this.infoEntrega
+            infoEntrega: this.infoEntrega,
+            telefoneMovel: this.telefoneMovel,
+            horarios: infosHorarios
+            
         }
         this.cadastrarFornecedor(fornecedor)
     }

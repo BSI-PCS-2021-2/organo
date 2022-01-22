@@ -29,6 +29,10 @@
                     <label for="inputCpf">CPF</label>
                     <input type="" v-model="cpf" class="form-control font-text form" id="inputCpf" placeholder="CPF" maxLength="11" required>
                 </div>
+                <div class="form-group">
+                    <label for="inputCelular">Celular</label>
+                    <input type="phone" v-model="celular" class="form-control font-text form" id="inputCelular" placeholder="Ex: 21999999999" maxLength="11">
+                </div>
                 <p class="h5">Endereço:</p>
                 <div class="form-group">
                     <label for="inputRua">Rua</label>
@@ -69,7 +73,8 @@ export default {
         nome: '',
         sobrenome: '',
         email: '',
-        senha: ''
+        senha: '',
+        celular: ''
     };
   },
   computed: {
@@ -97,7 +102,8 @@ export default {
                     complemento: this.complemento,
                     cep: this.cep
                 }
-            ]
+            ],
+            celular: this.celular
         }
         this.cadastrarComprador(comprador)
     }

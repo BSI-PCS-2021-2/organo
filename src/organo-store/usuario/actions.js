@@ -18,7 +18,8 @@ export function login({ commit }, user) {
                 cpf: response.data.cpf,
                 id: response.data.id,
                 enderecos: response.data.enderecos,
-                pedidos: response.data.pedidos
+                pedidos: response.data.pedidos,
+                celular: response.data.celular
             }
             commit("setComprador", userData)
             Swal.fire({
@@ -33,7 +34,9 @@ export function login({ commit }, user) {
                 email: response.data.email,
                 cnpj: response.data.cnpj,
                 id: response.data.id,
-                foto: response.data.foto
+                foto: response.data.foto,
+                telefoneMovel: response.data.telefoneMovel,
+                horarios: response.data.horarios
             }
             commit("setFornecedor", userData)
             Swal.fire({
@@ -114,8 +117,9 @@ export function finalizarCompra({ commit, getters }, payload) {
         endereco: comprador.enderecos[0],
         status: 'EM_ABERTO',
         dataEntrega: payload.dataEntrega,
-        comprador: comprador
-
+        comprador: comprador,
+        horarioEntrega: payload.horarioEntrega,
+        formaEntrega: payload.formaEntrega
     }
     let url = `http://localhost:8082/organo/pedido/${fornecedor.cnpj}/registrar/${comprador.cpf}`
     Axios.post(url, pedido).then(function (response) {

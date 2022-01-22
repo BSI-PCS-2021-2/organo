@@ -80,14 +80,26 @@
                 </div>
                 <br />
                 <label for="metodoDePagamento">Método de pagamento:</label>
-                <select name="metodoDePagamento" id="metodoDePagamento" @change="onChange($event)">
+                <select name="metodoDePagamento" id="metodoDePagamento" @change="onChangePagamento($event)">
                     <option value="CARTAO_CREDITO">Cartão de crédito</option>
                     <option value="CARTAO_DEBITO">Cartão de débito</option>
                     <option value="PIX">Pix</option>
                     <option value="DINHEIRO">Dinheiro</option>
                 </select>
                 <br />
-
+                <p class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
+                <label v-if="entrega || retirada" for="formaEntrega">Forma de entrega:</label>
+                <select v-if="entrega || retirada" name="formaEntrega" id="formaEntrega" @change="onChangeEntrega($event)">
+                    <option v-if="retirada" value="RETIRADA">Retirada</option>
+                    <option v-if="entrega" value="ENTREGA">Entrega</option>
+                </select>
+                <br>
+                <label v-if="manha || tarde || noite" for="horarioEntrega">Horário de entrega:</label>
+                <select v-if="manha || tarde || noite" name="horarioEntrega" id="horarioEntrega" @change="onChangeHorario($event)">
+                    <option v-if="manha" value="MANHA">Manhã, de 9h às 12h</option>
+                    <option v-if="tarde" value="TARDE">Tarde, de 13h às 17h</option>
+                    <option v-if="noite" value="NOITE">Noite, de 18h às 22h</option>
+                </select>
                 <button
                     @click="checkout()"
                     type="button"
@@ -101,14 +113,28 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Swal from 'sweetalert2'
 export default {
     name: "Carrinho",
     data() {
         return {
             precoTotal: 0,
             metodoPagamento: '',
-            onChange(e) {
+            horarioEntrega: '',
+            manha: '',
+            tarde: '',
+            noite: '',
+            entrega: '',
+            retirada: '',
+            formaEntrega: '',
+            onChangePagamento(e) {
               this.metodoPagamento = e.target.value;
+            },
+            onChangeHorario(e) {
+              this.horarioEntrega = e.target.value;
+            },
+            onChangeEntrega(e) {
+              this.formaEntrega = e.target.value;
             }
         };
     },
@@ -125,6 +151,15 @@ export default {
             });
         },
         checkout() {
+            if((!this.entrega && !this.retirada) || (!this.manha && !this.tarde && !this.noite)) {
+                Swal.fire({
+                    title: 'Não foi possível finalizar a compra.',
+                    text: 'O fornecedor não possui informações de entrega.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+                return;
+            }
             if(this.precoTotal === 0) {
                 return;
             }
@@ -132,11 +167,25 @@ export default {
             if(this.metodoPagamento === '') {
                 this.metodoPagamento = 'CARTAO_CREDITO'
             }
+
+            if(this.horarioEntrega === '') {
+                this.horarioEntrega = 'MANHA'
+            }
+
+            if(this.formaEntrega === '') {
+                this.formaEntrega = 'RETIRADA'
+            }
+
+            let amanha = new Date();
+            amanha.setDate(amanha.getDate()+1);
+
             const payload = {
                 carrinho: this.carrinho,
                 precoTotal: this.precoTotal,
                 metodoPagamento: this.metodoPagamento,
-                dataEntrega: ''
+                dataEntrega: amanha,
+                horarioEntrega: this.horarioEntrega,
+                formaEntrega: this.formaEntrega
             }
             this.finalizarCompra(payload);
         },
@@ -149,6 +198,14 @@ export default {
     },
     mounted() {
         this.calcPreco();
+        this.carrinho[0].fornecedor.horarios.forEach((horario) => {
+           if(horario.horarioSelecionado === 'MANHA') this.manha = horario.horarioSelecionado;
+           if(horario.horarioSelecionado === 'TARDE') this.tarde = horario.horarioSelecionado;
+           if(horario.horarioSelecionado === 'NOITE') this.noite = horario.horarioSelecionado;
+        })
+
+        if(this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA' || this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA_E_RETIRADA') this.entrega = this.carrinho[0].fornecedor.infoEntrega;
+        if(this.carrinho[0].fornecedor.infoEntrega === 'RETIRADA' || this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA_E_RETIRADA') this.retirada = this.carrinho[0].fornecedor.infoEntrega;
     },
 };
 </script>
@@ -159,6 +216,16 @@ export default {
   float: right;
 }
 #metodoDePagamento {
+    width: 30%;
+    margin: auto;
+}
+
+#horarioEntrega {
+    width: 30%;
+    margin: auto;
+}
+
+#formaEntrega {
     width: 30%;
     margin: auto;
 }
