@@ -207,6 +207,20 @@ export function retornarCompradorPedidos({ commit }, compradorCpf) {
         });
 }
 
+export function verificaCEP({ commit }, cep) {
+    let url = `http://localhost:8082/organo/cep/verificaCep/${cep}`;
+    Axios.get(url).then(function (response) {
+        if(response.status === 200 && response.data !== 'Cep não existe.') {
+            commit("setCepVerificado", true);
+        } else {
+            commit("setCepVerificado", false);
+        }
+    })
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
 export function sair({ commit }, user) {
     let usuario = {}
     if (user.id) {

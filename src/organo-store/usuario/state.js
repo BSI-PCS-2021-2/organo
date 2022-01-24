@@ -6,6 +6,7 @@ export default function () {
       fornecedorPedidos: [],
       fornecedorPedido: {},
       compradorPedidos: [],
-      compradorPedido: {}
+      compradorPedido: {},
+      cepVerificado: false
     }
 }

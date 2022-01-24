@@ -25,3 +25,7 @@ export function compradorPedidos(state) {
 export function compradorPedido(state) {
     return state.compradorPedido
 }
+
+export function cepVerificado(state) {
+    return state.cepVerificado
+}

@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputCep">CEP</label>
-                    <input type="text" v-model="cep" class="form-control font-text form" id="inputCep" placeholder="CEP" maxLength="8" required>
+                    <input type="text" v-model="cep" class="form-control font-text form" id="inputCep" v-on:blur="valCEP" placeholder="CEP" maxLength="8" required>
                 </div>
                 <button @click="cadastraComprador()" type="submit" class="btn btn-primary">Cadastrar</button>
                 <span id="preenche-campos" class="h5"></span>     
@@ -61,6 +61,7 @@
 </template> 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Swal from 'sweetalert2';
 export default {
   name: "CadastroComprador",
   data() {
@@ -78,10 +79,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("usuario", ["comprador"])
+    ...mapGetters("usuario", ["comprador", "cepVerificado"])
   },
   methods: {
-    ...mapActions("usuario", ["cadastrarComprador"]),
+    ...mapActions("usuario", ["cadastrarComprador", "verificaCEP"]),
     cadastraComprador() {
         if(this.nome === "" || this.sobrenome === "" || this.senha === "" || this.email === "" ||
         this.cpf === "" || this.rua === "" || this.numero === "" || this.cep === "") {
@@ -106,6 +107,19 @@ export default {
             celular: this.celular
         }
         this.cadastrarComprador(comprador)
+    },
+    valCEP(e) {
+      this.verificaCEP(e.target.value);
+      setTimeout(() => {
+        if(!this.cepVerificado) {
+          document.getElementById("inputCep").value = '';
+          Swal.fire({
+              title: 'CEP inválido.',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+          })
+        }
+      }, 1000);
     }
     
   },
