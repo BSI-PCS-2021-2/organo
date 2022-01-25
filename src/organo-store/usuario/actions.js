@@ -198,6 +198,17 @@ export function retornarPedidos({ commit }, fornecedorCnpj) {
         });
 }
 
+export function retornarDadosRelatorioDeVendas({ commit }, fornecedorCnpj) {
+    let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/relatorioDeVendas`;
+    Axios.get(url).then(function (response) {
+        response.data.ganhoTotalDePedidos = String(response.data.ganhoTotalDePedidos.toFixed(2));
+        commit("setRelatorioDeVendas", response.data)
+    })
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
 export function retornarCompradorPedidos({ commit }, compradorCpf) {
     let url = `http://localhost:8082/organo/comprador/${compradorCpf}/listarPedidos`;
     Axios.get(url).then(function (response) {

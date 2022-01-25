@@ -8,6 +8,7 @@ export default function () {
       compradorPedidos: [],
       compradorPedido: {},
       cepVerificado: false,
-      cepVerificadoFornecedor: false
+      cepVerificadoFornecedor: false,
+      relatorioDeVendas: {}
     }
 }

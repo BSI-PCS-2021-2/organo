@@ -33,3 +33,7 @@ export function setCepVerificado(state, val) {
 export function setCepVerificadoFornecedor(state, val) {
     state.cepVerificadoFornecedor = val
 }
+
+export function setRelatorioDeVendas(state, val) {
+    state.relatorioDeVendas = val
+}

@@ -33,3 +33,7 @@ export function cepVerificado(state) {
 export function cepVerificadoFornecedor(state) {
     return state.cepVerificadoFornecedor
 }
+
+export function relatorioDeVendas(state) {
+    return state.relatorioDeVendas
+}
