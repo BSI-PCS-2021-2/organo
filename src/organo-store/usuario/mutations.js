@@ -29,3 +29,7 @@ export function setCompradorPedido(state, val) {
 export function setCepVerificado(state, val) {
     state.cepVerificado = val
 }
+
+export function setCepVerificadoFornecedor(state, val) {
+    state.cepVerificadoFornecedor = val
+}

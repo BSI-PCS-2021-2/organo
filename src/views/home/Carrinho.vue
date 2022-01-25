@@ -87,6 +87,8 @@
                     <option value="DINHEIRO">Dinheiro</option>
                 </select>
                 <br />
+                <p class="h5" v-if="retirada && this.carrinho[0].fornecedor.enderecos"><b>Endereço da loja: </b> {{this.carrinho[0].fornecedor.enderecos[0].rua}}, {{this.carrinho[0].fornecedor.enderecos[0].numero}}</p>
+                <br>
                 <p class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
                 <label v-if="entrega || retirada" for="formaEntrega">Forma de entrega:</label>
                 <select v-if="entrega || retirada" name="formaEntrega" id="formaEntrega" @change="onChangeEntrega($event)">

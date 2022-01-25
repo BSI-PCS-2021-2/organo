@@ -109,7 +109,12 @@ export default {
         this.cadastrarComprador(comprador)
     },
     valCEP(e) {
-      this.verificaCEP(e.target.value);
+      const info = {
+        cep: e.target.value, 
+        type: ''
+      };
+
+      this.verificaCEP(info);
       setTimeout(() => {
         if(!this.cepVerificado) {
           document.getElementById("inputCep").value = '';

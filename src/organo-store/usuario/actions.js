@@ -36,7 +36,8 @@ export function login({ commit }, user) {
                 id: response.data.id,
                 foto: response.data.foto,
                 telefoneMovel: response.data.telefoneMovel,
-                horarios: response.data.horarios
+                horarios: response.data.horarios,
+                enderecos: response.data.enderecos
             }
             commit("setFornecedor", userData)
             Swal.fire({
@@ -114,7 +115,7 @@ export function finalizarCompra({ commit, getters }, payload) {
         itens: carrinhoFormatado,
         valor: payload.precoTotal,
         metodoPagamento: payload.metodoPagamento,
-        endereco: comprador.enderecos[0],
+        endereco: (payload.formaEntrega === 'ENTREGA') ? comprador.enderecos[0] : fornecedor.enderecos[0],
         status: 'EM_ABERTO',
         dataEntrega: payload.dataEntrega,
         comprador: comprador,
@@ -207,13 +208,13 @@ export function retornarCompradorPedidos({ commit }, compradorCpf) {
         });
 }
 
-export function verificaCEP({ commit }, cep) {
-    let url = `http://localhost:8082/organo/cep/verificaCep/${cep}`;
+export function verificaCEP({ commit }, info) {
+    let url = `http://localhost:8082/organo/cep/verificaCep/${info.cep}`;
     Axios.get(url).then(function (response) {
         if(response.status === 200 && response.data !== 'Cep não existe.') {
-            commit("setCepVerificado", true);
+            commit("setCepVerificado" + info.type, true);
         } else {
-            commit("setCepVerificado", false);
+            commit("setCepVerificado" + info.type, false);
         }
     })
         .catch(function (error) {

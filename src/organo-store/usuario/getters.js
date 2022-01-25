@@ -29,3 +29,7 @@ export function compradorPedido(state) {
 export function cepVerificado(state) {
     return state.cepVerificado
 }
+
+export function cepVerificadoFornecedor(state) {
+    return state.cepVerificadoFornecedor
+}
