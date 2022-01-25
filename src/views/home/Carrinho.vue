@@ -79,7 +79,9 @@
                     </div>
                 </div>
                 <br />
-                <label for="metodoDePagamento">Método de pagamento:</label>
+                <p class="h5" v-if="retirada && this.carrinho[0] && this.carrinho[0].fornecedor.enderecos"><b>Endereço da loja: </b> {{this.carrinho[0].fornecedor.enderecos[0].rua}}, {{this.carrinho[0].fornecedor.enderecos[0].numero}}</p>
+                <br>
+                <label class="h5" for="metodoDePagamento">Método de pagamento:</label>
                 <select name="metodoDePagamento" id="metodoDePagamento" @change="onChangePagamento($event)">
                     <option value="CARTAO_CREDITO">Cartão de crédito</option>
                     <option value="CARTAO_DEBITO">Cartão de débito</option>
@@ -87,21 +89,25 @@
                     <option value="DINHEIRO">Dinheiro</option>
                 </select>
                 <br />
-                <p class="h5" v-if="retirada && this.carrinho[0].fornecedor.enderecos"><b>Endereço da loja: </b> {{this.carrinho[0].fornecedor.enderecos[0].rua}}, {{this.carrinho[0].fornecedor.enderecos[0].numero}}</p>
-                <br>
-                <p class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
-                <label v-if="entrega || retirada" for="formaEntrega">Forma de entrega:</label>
+                <label class="h5" v-if="entrega || retirada" for="formaEntrega">Forma de entrega:</label>
                 <select v-if="entrega || retirada" name="formaEntrega" id="formaEntrega" @change="onChangeEntrega($event)">
                     <option v-if="retirada" value="RETIRADA">Retirada</option>
                     <option v-if="entrega" value="ENTREGA">Entrega</option>
                 </select>
                 <br>
-                <label v-if="manha || tarde || noite" for="horarioEntrega">Horário de entrega:</label>
+                <p class="h5" v-if="entrega && this.comprador.enderecos"> Escolha o endereço de entrega: </p>
+                <select v-model="enderecoEscolhido" name="enderecoEscolhido" id="enderecoEscolhido" v-if="entrega && this.comprador.enderecos && this.formaEntrega === 'ENTREGA'">
+                    <option v-for="option in options" :value="option.value" :key="option">{{option.text}}</option>
+                </select>
+                <br>
+                <label class="h5" v-if="manha || tarde || noite" for="horarioEntrega">Horário de entrega:</label>
                 <select v-if="manha || tarde || noite" name="horarioEntrega" id="horarioEntrega" @change="onChangeHorario($event)">
                     <option v-if="manha" value="MANHA">Manhã, de 9h às 12h</option>
                     <option v-if="tarde" value="TARDE">Tarde, de 13h às 17h</option>
                     <option v-if="noite" value="NOITE">Noite, de 18h às 22h</option>
                 </select>
+                <br>
+                <p class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
                 <button
                     @click="checkout()"
                     type="button"
@@ -115,7 +121,8 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import moment from 'moment';
 export default {
     name: "Carrinho",
     data() {
@@ -129,6 +136,7 @@ export default {
             entrega: '',
             retirada: '',
             formaEntrega: '',
+            enderecoEscolhido: '',
             onChangePagamento(e) {
               this.metodoPagamento = e.target.value;
             },
@@ -143,6 +151,14 @@ export default {
     computed: {
         ...mapGetters("produto", ["carrinho"]),
         ...mapGetters("usuario", ["comprador"]),
+        options() {
+            return this.comprador.enderecos.map(endereco => {
+                return {
+                    value: endereco,
+                    text: `${endereco.rua}, ${endereco.numero} - CEP: ${endereco.cep}`
+                }
+            })
+        }
     },
     methods: {
         ...mapActions("produto", ["removerDoCarrinho"]),
@@ -180,6 +196,7 @@ export default {
 
             let amanha = new Date();
             amanha.setDate(amanha.getDate()+1);
+            amanha = moment(amanha).format("DD/MM/YYYY");
 
             const payload = {
                 carrinho: this.carrinho,
@@ -187,7 +204,8 @@ export default {
                 metodoPagamento: this.metodoPagamento,
                 dataEntrega: amanha,
                 horarioEntrega: this.horarioEntrega,
-                formaEntrega: this.formaEntrega
+                formaEntrega: this.formaEntrega,
+                endereco: this.enderecoEscolhido
             }
             this.finalizarCompra(payload);
         },
@@ -199,6 +217,11 @@ export default {
         }
     },
     mounted() {
+
+        if(this.comprador.enderecos) {
+            this.enderecoEscolhido = this.comprador.enderecos[0];
+        }
+
         this.calcPreco();
         this.carrinho[0].fornecedor.horarios.forEach((horario) => {
            if(horario.horarioSelecionado === 'MANHA') this.manha = horario.horarioSelecionado;
@@ -218,17 +241,22 @@ export default {
   float: right;
 }
 #metodoDePagamento {
-    width: 30%;
+    width: 50%;
     margin: auto;
 }
 
 #horarioEntrega {
-    width: 30%;
+    width: 50%;
+    margin: auto;
+}
+
+#enderecoEscolhido {
+    width: 50%;
     margin: auto;
 }
 
 #formaEntrega {
-    width: 30%;
+    width: 50%;
     margin: auto;
 }
 </style>

@@ -115,7 +115,7 @@ export function finalizarCompra({ commit, getters }, payload) {
         itens: carrinhoFormatado,
         valor: payload.precoTotal,
         metodoPagamento: payload.metodoPagamento,
-        endereco: (payload.formaEntrega === 'ENTREGA') ? comprador.enderecos[0] : fornecedor.enderecos[0],
+        endereco: (payload.formaEntrega === 'ENTREGA') ? payload.endereco : fornecedor.enderecos[0],
         status: 'EM_ABERTO',
         dataEntrega: payload.dataEntrega,
         comprador: comprador,
