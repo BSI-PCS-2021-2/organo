@@ -218,18 +218,6 @@ export default {
         }
     },
     mounted() {
-        let hoje = new Date();
-        console.log(hoje.getHours());
-        if(hoje.getHours() >= 9 && hoje.getHours() <= 12) {
-            this.dataHoje.demanha = true;
-        }
-        if(hoje.getHours() >= 9 && hoje.getHours() <= 17) {
-            this.dataHoje.tarde = true
-        }
-        if(hoje.getHours() >= 9 && hoje.getHours() <= 22) {
-            this.dataHoje.noite = true;
-        }
-
         if(this.comprador.enderecos) {
             this.enderecoEscolhido = this.comprador.enderecos[0];
         }
@@ -243,7 +231,19 @@ export default {
 
         if(this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA' || this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA_E_RETIRADA') this.entrega = this.carrinho[0].fornecedor.infoEntrega;
         if(this.carrinho[0].fornecedor.infoEntrega === 'RETIRADA' || this.carrinho[0].fornecedor.infoEntrega === 'ENTREGA_E_RETIRADA') this.retirada = this.carrinho[0].fornecedor.infoEntrega;
-    },
+
+        let hoje = new Date();
+            console.log(hoje.getHours());
+            if(hoje.getHours() >= 9 && hoje.getHours() <= 12 && this.manha) {
+                this.dataHoje.demanha = true;
+            }
+            if(hoje.getHours() >= 9 && hoje.getHours() <= 17 && this.tarde) {
+                this.dataHoje.tarde = true
+            }
+            if(hoje.getHours() >= 9 && hoje.getHours() <= 22 && this.noite) {
+                this.dataHoje.noite = true;
+            }
+        },
 };
 </script>
 <style>
