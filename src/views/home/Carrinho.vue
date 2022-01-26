@@ -102,12 +102,12 @@
                 <br>
                 <label class="h5" v-if="manha || tarde || noite" for="horarioEntrega">Horário de entrega:</label>
                 <select v-if="manha || tarde || noite" name="horarioEntrega" id="horarioEntrega" @change="onChangeHorario($event)">
-                    <option v-if="(manha && this.dataHoje.manha) || (manha && !this.dataHoje.manha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="MANHA">Manhã, de 9h às 12h</option>
-                    <option v-if="(tarde && this.dataHoje.tarde) || (tarde && !this.dataHoje.manha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="TARDE">Tarde, de 13h às 17h</option>
-                    <option v-if="(noite && this.dataHoje.noite) || (noite && !this.dataHoje.manha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="NOITE">Noite, de 18h às 22h</option>
+                    <option v-if="(manha && this.dataHoje.demanha) || (manha && !this.dataHoje.demanha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="MANHA">Manhã, de 9h às 12h</option>
+                    <option v-if="(tarde && this.dataHoje.tarde) || (tarde && !this.dataHoje.demanha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="TARDE">Tarde, de 13h às 17h</option>
+                    <option v-if="(noite && this.dataHoje.noite) || (noite && !this.dataHoje.demanha && !this.dataHoje.tarde && !this.dataHoje.noite)" value="NOITE">Noite, de 18h às 22h</option>
                 </select>
                 <br>
-                <p v-if="!this.dataHoje.manha && !this.dataHoje.tarde && !this.dataHoje.noite" class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
+                <p v-if="!this.dataHoje.demanha && !this.dataHoje.tarde && !this.dataHoje.noite" class="h5"><b>A entrega/retirada deve ser efetuada no dia seguinte à compra. </b></p>
                 <button
                     @click="checkout()"
                     type="button"
@@ -137,7 +137,7 @@ export default {
             retirada: '',
             formaEntrega: '',
             enderecoEscolhido: '',
-            dataHoje: '',
+            dataHoje: {},
             onChangePagamento(e) {
               this.metodoPagamento = e.target.value;
             },
@@ -221,7 +221,7 @@ export default {
         let hoje = new Date();
         console.log(hoje.getHours());
         if(hoje.getHours() >= 9 && hoje.getHours() <= 12) {
-            this.dataHoje.manha = true;
+            this.dataHoje.demanha = true;
         }
         if(hoje.getHours() >= 9 && hoje.getHours() <= 17) {
             this.dataHoje.tarde = true
