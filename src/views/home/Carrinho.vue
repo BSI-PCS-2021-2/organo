@@ -29,7 +29,7 @@
                             width="80"
                         />
                     </div>
-                    <p class="font-text">{{ item.nome }}</p>
+                    <p class="font-text" style="width:20%">{{ item.nome }}</p>
                     <div class="row">
                         <div class="mr-4">
                             <p>Preço Unitário</p>
@@ -95,7 +95,7 @@
                     <option v-if="entrega" value="ENTREGA">Entrega</option>
                 </select>
                 <br>
-                <p class="h5" v-if="entrega && this.comprador.enderecos"> Escolha o endereço de entrega: </p>
+                <p class="h5" v-if="entrega && this.comprador.enderecos && this.formaEntrega === 'ENTREGA'"> Escolha o endereço de entrega: </p>
                 <select v-model="enderecoEscolhido" name="enderecoEscolhido" id="enderecoEscolhido" v-if="entrega && this.comprador.enderecos && this.formaEntrega === 'ENTREGA'">
                     <option v-for="option in options" :value="option.value" :key="option">{{option.text}}</option>
                 </select>
