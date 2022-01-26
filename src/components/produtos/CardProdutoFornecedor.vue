@@ -4,7 +4,7 @@
     <div class="card-body mr-0">
       <h5 class="card-title text-left product-name mb-1">{{ produto.nome }}</h5>
       <p class="text-left mt-1 product-price">R$ {{ produto.preco.toLocaleString(2) }}</p>
-      <div class="row">
+      <div>
         <router-link
           type="button"
           class="btn btn-secondary btn-md product-button details"
@@ -70,6 +70,6 @@ export default {
 
 .card.product-card {
   width: 220px !important;
-  height: 320px !important;
+  height: 100% !important;
 }
 </style>
