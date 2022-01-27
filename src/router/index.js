@@ -23,6 +23,7 @@ const routes = [
             { path: 'detalhesPedido/:idPedido', component: () => import('../views/home/DetalhesPedido.vue') },
             { path: 'detalhesPedidoFornecedor/:idPedido', component: () => import('../views/home/DetalhesPedidoFornecedor.vue') },
             { path: 'cadastroProduto/:cnpjFornecedor', component: () => import('../views/home/CadastroProduto.vue') },
+            { path: 'cadastroEndereco/:idComprador', component: () => import('../views/usuario/CadastroEndereco.vue') },
 
         ]
     }

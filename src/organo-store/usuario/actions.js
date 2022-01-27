@@ -178,6 +178,32 @@ export function cadastrarFornecedor({ commit, getters }, fornecedorCadastro) {
         });
 }
 
+export function atualizarComprador({ commit, getters }, compradorCadastro) {
+    console.log(compradorCadastro);
+    let url = "http://localhost:8082/organo/comprador/atualizar"
+    Axios.put(url, compradorCadastro).then(function (response) {
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Atualização feita com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
+            const comprador = getters.comprador
+            commit('setComprador', comprador)
+            setTimeout(() => router.push('/comprador/'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Cadastro com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log(error)
+        });
+}
+
 export function retornaFornecedores({ commit }) {
     let url = `http://localhost:8082/organo/fornecedor/listar`;
     Axios.get(url).then(function (response) {

@@ -15,6 +15,21 @@
           <p class="font-text mt-3"><b>E-mail</b></p>
           <p class="font-text">{{ comprador.email }}</p>
         </div>
+        <div>
+          <p class="font-text mt-3"><b>Endereços: </b></p>
+          <div v-for="endereco in comprador.enderecos" :key="endereco.id">
+                    <p class="font-text">
+                        {{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.complemento }} - CEP: {{ endereco.cep }}
+                    </p>
+          </div>
+          <br>
+          <router-link
+            type="submit"
+            class="btn btn-primary btn-block"
+            :to="'/cadastroEndereco/'+ comprador.id"
+            >Cadastrar novo endereço</router-link
+          >
+        </div>
         <p class="font-subTitle mt-5 mb-5" v-if="comprador.pedidos">Pedidos</p>
         <div class="row">
             <div class="col-md-4 font-subTitle" v-for="pedido in compradorPedidos" :key="pedido.id">
