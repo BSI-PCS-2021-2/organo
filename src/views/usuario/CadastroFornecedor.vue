@@ -111,7 +111,7 @@ export default {
     ...mapGetters("usuario", ["fornecedor", "cepVerificadoFornecedor"])
   },
   methods: {
-    ...mapActions("usuario", ["cadastrarFornecedor", "verificaCEP"]),
+    ...mapActions("usuario", ["cadastrarFornecedor", "verificaCEP", "resetVerificaCEP"]),
     cadastraFornecedor() {
         if(this.nomeFantasia === "" || this.senha === "" || this.email === "" ||
         this.cnpj === "") {
@@ -161,6 +161,7 @@ export default {
         this.cadastrarFornecedor(fornecedor)
     },
     valCEP(e) {
+      this.resetVerificaCEP('Fornecedor');
       const info = {
         cep: e.target.value, 
         type: 'Fornecedor'
@@ -176,7 +177,7 @@ export default {
               confirmButtonText: 'Ok'
           })
         }
-      }, 1000);
+      }, 3000);
     }
   },
 };

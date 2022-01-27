@@ -51,7 +51,7 @@ export default {
     ...mapGetters("usuario", ["comprador", "cepVerificado"])
   },
   methods: {
-    ...mapActions("usuario", ["atualizarComprador", "verificaCEP"]),
+    ...mapActions("usuario", ["atualizarComprador", "verificaCEP", "resetVerificaCEP"]),
     atualizaComprador() {
         if(this.rua === "" || this.numero === "" || this.cep === "") {
             document.getElementById("preenche-campos").value = "Por favor, preencha todos os campos obrigatórios."
@@ -68,6 +68,7 @@ export default {
         this.atualizarComprador(this.comprador);
     },
     valCEP(e) {
+      this.resetVerificaCEP('');
       const info = {
         cep: e.target.value, 
         type: ''
@@ -83,9 +84,8 @@ export default {
               confirmButtonText: 'Ok'
           })
         }
-      }, 1000);
+      }, 3000);
     }
-    
   },
 };
 </script>

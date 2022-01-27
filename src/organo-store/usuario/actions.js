@@ -259,6 +259,10 @@ export function verificaCEP({ commit }, info) {
         });
 }
 
+export function resetVerificaCEP({ commit }, info) {
+    commit("setCepVerificado" + info, false);
+}
+
 export function sair({ commit }, user) {
     let usuario = {}
     if (user.id) {

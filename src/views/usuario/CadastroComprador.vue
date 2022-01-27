@@ -82,7 +82,7 @@ export default {
     ...mapGetters("usuario", ["comprador", "cepVerificado"])
   },
   methods: {
-    ...mapActions("usuario", ["cadastrarComprador", "verificaCEP"]),
+    ...mapActions("usuario", ["cadastrarComprador", "verificaCEP", "resetVerificaCEP"]),
     cadastraComprador() {
         if(this.nome === "" || this.sobrenome === "" || this.senha === "" || this.email === "" ||
         this.cpf === "" || this.rua === "" || this.numero === "" || this.cep === "") {
@@ -109,6 +109,7 @@ export default {
         this.cadastrarComprador(comprador)
     },
     valCEP(e) {
+      this.resetVerificaCEP('');
       const info = {
         cep: e.target.value, 
         type: ''
@@ -124,9 +125,8 @@ export default {
               confirmButtonText: 'Ok'
           })
         }
-      }, 1000);
-    }
-    
+      }, 3000);
+    }  
   },
 };
 </script>
