@@ -5,6 +5,7 @@
       <input type="number" v-model="quantidade" class="form-control mb-2 mr-sm-2" />
     </div>
     <button
+      v-if="Object.keys(fornecedor).length === 0"
       @click.stop="adicionarNoCarrinho({produto, quantidade})"
       type="button"
       class="btn btn-primary btn-lg btn-block col-7"
@@ -22,6 +23,7 @@ export default {
   },
   computed: {
     ...mapState("produto", ["carrinho"]),
+    ...mapState("usuario", ["fornecedor"]),
   },
   methods: {
     ...mapActions("produto", ["adicionarNoCarrinho", "removerDoCarrinho"]),
