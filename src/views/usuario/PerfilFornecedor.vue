@@ -4,13 +4,26 @@
       <div class="col-6 text-left text-justify">
         <div class="display-4">Perfil do fornecedor </div>
         <br>
-        <p class="lead text-justify">Nome: {{ fornecedor.nomeFantasia }}</p>
+        <p class="h5"><b>Nome:</b> {{ fornecedor.nomeFantasia }}</p>
         <div>
-          <p class="h5">CNPJ: {{ fornecedor.cnpj }}</p>
+          <p class="h5"><b>CNPJ:</b> {{ fornecedor.cnpj }}</p>
         </div>
         <div>
-          <p class="h5">E-mail: {{ fornecedor.email }}</p>
+          <p class="h5"><b>E-mail:</b> {{ fornecedor.email }}</p>
         </div>
+        <div>
+          <p v-if="fornecedor.enderecos" class="h5"><b>Endereço:</b> {{ fornecedor.enderecos[0].rua }}, {{ fornecedor.enderecos[0].numero }} - CEP: {{ fornecedor.enderecos[0].cep }}</p>
+        </div>
+        <br>
+        <router-link
+            type="button"
+            class="btn btn-primary btn-lg btn-block col-7"
+            style="padding: 0px; width: 50%;"
+            :to="'/editarFornecedor/'"
+        >
+        Editar cadastro
+        </router-link>
+        <br>
         <br>
         <div class="row mt-4">
           <p class="h3" v-if="Object.keys(produtos) !== 0"> Produtos cadastrados: </p>

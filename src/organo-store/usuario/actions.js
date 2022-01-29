@@ -19,7 +19,8 @@ export function login({ commit }, user) {
                 id: response.data.id,
                 enderecos: response.data.enderecos,
                 pedidos: response.data.pedidos,
-                celular: response.data.celular
+                celular: response.data.celular,
+                senha: response.data.senha
             }
             commit("setComprador", userData)
             Swal.fire({
@@ -37,7 +38,9 @@ export function login({ commit }, user) {
                 foto: response.data.foto,
                 telefoneMovel: response.data.telefoneMovel,
                 horarios: response.data.horarios,
-                enderecos: response.data.enderecos
+                enderecos: response.data.enderecos,
+                senha: response.data.senha,
+                infoEntrega: response.data.infoEntrega
             }
             commit("setFornecedor", userData)
             Swal.fire({
@@ -158,6 +161,32 @@ export function cadastrarFornecedor({ commit, getters }, fornecedorCadastro) {
         if (response.status === 201) {
             Swal.fire({
                 title: 'Fornecedor cadastrado com sucesso!',
+                text: 'Você já pode se logar.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
+            const fornecedor = getters.fornecedor
+            commit('setFornecedor', fornecedor)
+            setTimeout(() => router.push('/loginFornecedor'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Cadastro com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log(error)
+        });
+}
+
+export function atualizarFornecedor({ commit, getters }, fornecedorAtualizado) {
+    let url = "http://localhost:8082/organo/fornecedor/atualizar"
+    Axios.put(url, fornecedorAtualizado).then(function (response) {
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Fornecedor atualizado com sucesso!',
                 text: 'Você já pode se logar.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
