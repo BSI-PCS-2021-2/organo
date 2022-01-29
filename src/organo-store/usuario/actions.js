@@ -253,6 +253,33 @@ export function retornarPedidos({ commit }, fornecedorCnpj) {
         });
 }
 
+export function atualizarStatusPedido({ commit, getters }, info) {
+    console.log(info);
+    let url = `http://localhost:8082/organo/pedido/atualizarStatus/${info.pedidoId}?status=${info.status}`;
+    Axios.put(url).then(function (response) {
+        if(response.status === 200) {
+            Swal.fire({
+                title: 'Atualização feita com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
+            let fornecedorPedido = getters.fornecedorPedido
+            fornecedorPedido = response.data
+            commit('setFornecedorPedido', fornecedorPedido)
+            setTimeout(() => router.push('/fornecedor/'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Atualização com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log(error)
+        });
+}
+
 export function retornarDadosRelatorioDeVendas({ commit }, fornecedorCnpj) {
     let url = `http://localhost:8082/organo/fornecedor/${fornecedorCnpj}/relatorioDeVendas`;
     Axios.get(url).then(function (response) {
