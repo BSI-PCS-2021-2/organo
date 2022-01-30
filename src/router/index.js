@@ -25,6 +25,7 @@ const routes = [
             { path: 'cadastroProduto/:cnpjFornecedor', component: () => import('../views/home/CadastroProduto.vue') },
             { path: 'cadastroEndereco/:idComprador', component: () => import('../views/usuario/CadastroEndereco.vue') },
             { path: 'editarFornecedor', component: () => import('../views/usuario/EditarFornecedor.vue') },
+            { path: 'editarProduto/:idProduto', component: () => import('../views/home/EditarProduto.vue') },
 
         ]
     }

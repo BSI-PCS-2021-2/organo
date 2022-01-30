@@ -39,7 +39,7 @@
                             v-for="produto in listaProdutos"
                             :key="produto.id"
                         >
-                            <CardProduto :produto="produto" />
+                            <CardProduto :produto="produto" v-if="produto.quantidade !== 0 && produto.deleted === false"/>
                         </div>
                     </div>
                 </div>

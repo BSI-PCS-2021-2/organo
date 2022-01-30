@@ -40,7 +40,7 @@
             <div class="mr-2 mb-4" v-for="produto in produtos" :key="produto">
                 <div class="row">
                   <div class="mr-2 mb-4" v-for="p in produto" :key="p.id">
-                    <CardProdutoFornecedor :produto="p" />
+                    <CardProdutoFornecedor :produto="p" v-if="p.deleted !== true"/>
                   </div>
                 </div>
             </div>

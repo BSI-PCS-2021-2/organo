@@ -315,6 +315,58 @@ export function verificaCEP({ commit }, info) {
         });
 }
 
+export function atualizarProduto({ commit, getters }, payload) {
+    let url = `http://localhost:8082/organo/produto/${payload.cnpjFornecedor}/atualizar`;
+    Axios.put(url, payload.produto).then(function (response) {
+        if(response.status === 200) {
+            Swal.fire({
+                title: 'Produto atualizado com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
+            let produto = getters.produto
+            produto = response.data
+            commit('setProduto', produto)
+            setTimeout(() => router.push('/fornecedor'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Atualização com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log(error)
+        });
+}
+
+export function deletarProduto({ commit, getters }, payload) {
+    let url = `http://localhost:8082/organo/produto/${payload.cnpjFornecedor}/deletar/${payload.produtoId}`;
+    Axios.delete(url).then(function (response) {
+        if(response.status === 200) {
+            Swal.fire({
+                title: 'Produto deletado com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
+            let produto = getters.produto
+            produto = {}
+            commit('setProduto', produto)
+            setTimeout(() => router.push('/fornecedor'), 1500)
+        }
+    })
+        .catch(function (error) {
+            Swal.fire({
+                title: 'Exclusão com erro',
+                text: 'Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log(error)
+        });
+}
+
 export function resetVerificaCEP({ commit }, info) {
     commit("setCepVerificado" + info, false);
 }

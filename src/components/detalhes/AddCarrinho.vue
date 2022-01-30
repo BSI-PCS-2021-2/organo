@@ -10,6 +10,15 @@
       type="button"
       class="btn btn-primary btn-lg btn-block col-7"
     >Adicionar no carrinho</button>
+    <router-link
+            v-if="Object.keys(fornecedor).length !== 0"
+            type="button"
+            class="btn btn-primary btn-lg btn-block col-7"
+            style="padding: 10px; width: 50%;"
+            :to="'/editarProduto/' + this.$route.params.idProduto"
+    >
+    Editar
+    </router-link>
   </div>
 </template>
 <script>
@@ -35,6 +44,9 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.$route.params.idProduto);
+  }
 };
 </script>
 <style>
