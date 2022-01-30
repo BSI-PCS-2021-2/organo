@@ -181,7 +181,7 @@ export function cadastrarFornecedor({ commit, getters }, fornecedorCadastro) {
         });
 }
 
-export function atualizarFornecedor({ commit, getters }, fornecedorAtualizado) {
+export function atualizarFornecedor({ commit }, fornecedorAtualizado) {
     let url = "http://localhost:8082/organo/fornecedor/atualizar"
     Axios.put(url, fornecedorAtualizado).then(function (response) {
         if (response.status === 200) {
@@ -191,7 +191,7 @@ export function atualizarFornecedor({ commit, getters }, fornecedorAtualizado) {
                 icon: 'success',
                 confirmButtonText: 'Ok'
             })
-            const fornecedor = getters.fornecedor
+            const fornecedor = {}
             commit('setFornecedor', fornecedor)
             setTimeout(() => router.push('/loginFornecedor'), 1500)
         }
@@ -207,19 +207,19 @@ export function atualizarFornecedor({ commit, getters }, fornecedorAtualizado) {
         });
 }
 
-export function atualizarComprador({ commit, getters }, compradorCadastro) {
-    console.log(compradorCadastro);
+export function atualizarComprador({ commit }, compradorCadastro) {
     let url = "http://localhost:8082/organo/comprador/atualizar"
     Axios.put(url, compradorCadastro).then(function (response) {
         if (response.status === 200) {
             Swal.fire({
                 title: 'Atualização feita com sucesso!',
+                text: 'Você já pode se logar.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
             })
-            const comprador = getters.comprador
+            const comprador = {}
             commit('setComprador', comprador)
-            setTimeout(() => router.push('/comprador/'), 1500)
+            setTimeout(() => router.push('/loginComprador/'), 1500)
         }
     })
         .catch(function (error) {

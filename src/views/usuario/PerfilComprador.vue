@@ -4,16 +4,13 @@
       <div class="col-6 text-left text-justify">
         <div class="display-4 mb-4 font-title">Perfil do comprador </div>
         <div>
-          <p class="font-text"><b>Nome</b></p>
-          <p class="font-text">{{ comprador.nome}} {{ comprador.sobrenome }}</p>
+          <p class="font-text"><b>Nome:</b> {{ comprador.nome}} {{ comprador.sobrenome }}</p>
         </div>
         <div>
-          <p class="font-text mt-3"><b>CPF</b></p>
-          <p class="font-text">{{ comprador.cpf }}</p>
+          <p class="font-text mt-3"><b>CPF:</b> {{ comprador.cpf }}</p>
         </div>
         <div>
-          <p class="font-text mt-3"><b>E-mail</b></p>
-          <p class="font-text">{{ comprador.email }}</p>
+          <p class="font-text mt-3"><b>E-mail:</b> {{ comprador.email }}</p>
         </div>
         <div>
           <p class="font-text mt-3"><b>Endereços: </b></p>
@@ -25,10 +22,19 @@
           <br>
           <router-link
             type="submit"
-            class="btn btn-primary btn-block"
+            class="btn btn-primary btn-lg btn-block col-7"
+            style="padding:0.5px; width:50%; display:block; float:right;"
             :to="'/cadastroEndereco/'+ comprador.id"
             >Cadastrar novo endereço</router-link
           >
+          <router-link
+            type="button"
+            class="btn btn-primary btn-lg btn-block col-7"
+            style="padding:0px; width:45%; display:block; float:left; margin-top:0px;"
+            :to="'/editarComprador/'"
+          >
+          Editar cadastro
+          </router-link>
         </div>
         <p class="font-subTitle mt-5 mb-5" v-if="comprador.pedidos">Pedidos</p>
         <div class="row">

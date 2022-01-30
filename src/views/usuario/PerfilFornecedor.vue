@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid mt-5 mb-5">
     <div class="row d-flex justify-content-center">
       <div class="col-6 text-left text-justify">
-        <div class="display-4">Perfil do fornecedor </div>
+        <div class="display-4 mb-4 font-title">Perfil do fornecedor </div>
         <br>
         <p class="h5"><b>Nome:</b> {{ fornecedor.nomeFantasia }}</p>
         <div>
