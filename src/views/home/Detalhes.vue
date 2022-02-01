@@ -1,6 +1,7 @@
 <template>
   <div class="details-page">
-    <div class="row d-flex justify-content-center">
+    <router-link to="/"><div class="organoBanner"></div></router-link>
+    <div class="row d-flex justify-content-center mt-5 mb-5">
       <div class="col-2">
         <div class="card text-left shadow-md">
           <img class="card-img-top image-product" v-bind:src="`${produto.foto_url}`" alt />
@@ -10,13 +11,13 @@
         <div class="display-3 font-subTitle">{{ produto.nome }}</div>
         <p class="lead text-justify">{{ produto.conteudo }}</p>
         <div>
-          <p class="font-text"><b>Preço:</b> R$ {{ produto.preco.toLocaleString(2) }}</p> 
+          <p class="h3"><b>Preço:</b> R$ {{ produto.preco.toLocaleString(2) }}</p> 
+        </div>
+        <div>
+          <p class="font-text"><b>Em estoque:</b> {{ produto.quantidade }}</p>
         </div>
         <div>
           <p class="font-text"><b>Validade:</b> {{ this.dataValidade }}</p>
-        </div>
-        <div>
-          <p class="font-text"><b>Quantidade:</b> {{ produto.quantidade }}</p>
         </div>
         <div>
           <p class="font-text"><b>Fornecedor:</b> {{ produto.fornecedor.nomeFantasia }}</p>

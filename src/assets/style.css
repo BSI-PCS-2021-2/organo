@@ -39,24 +39,9 @@
 }
 
 footer {
-    background-color: #008542;
-    height: 250px !important;
+    background-color: #d3d3d3;
+    height: 150px !important;
     width: 100% !important;
-}
-
-.card-page {
-    margin-top: 6%;
-    margin-bottom: 4%;
-}
-
-.login-page {
-    margin-top: 6%;
-    margin-bottom: 4%;
-}
-
-.details-page {
-    margin-top: 6%;
-    margin-bottom: 4%;
 }
 
 .custom-control:focus {
@@ -69,4 +54,13 @@ input.custom-control-input:focus {
     box-shadow: none !important;
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
+}
+
+.organoBanner {
+    background-image: url(https://i.imgur.com/K1EL2gX.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 18em;
+    width: 100%;
+    margin-top: 55px;
 }

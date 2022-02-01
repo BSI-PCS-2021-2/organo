@@ -8,6 +8,7 @@
       v-if="Object.keys(fornecedor).length === 0"
       @click.stop="adicionarNoCarrinho({produto, quantidade})"
       type="button"
+<<<<<<< Updated upstream
       class="btn btn-primary btn-lg btn-block col-7"
     >Adicionar no carrinho</button>
     <router-link
@@ -19,6 +20,11 @@
     >
     Editar
     </router-link>
+=======
+      class="btn btn-primary btn-lg btn-block col-6"
+      style="height: 100%"
+    >Adicionar ao carrinho</button>
+>>>>>>> Stashed changes
   </div>
 </template>
 <script>

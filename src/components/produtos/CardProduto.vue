@@ -23,7 +23,7 @@
                 </p>
                 <router-link
                     type="button"
-                    class="btn btn-secondary btn-md product-button details"
+                    class="btn btn-primary btn-md product-button details"
                     :to="'/detalhes/' + produto.id"
                 >
                     Adicionar

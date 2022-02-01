@@ -1,6 +1,7 @@
 <template>
-    <div class="container card-page" style="padding: 30px">
-        <div class="row d-flex justify-content-center">
+    <div class="card-page">
+    <router-link to="/"><div class="organoBanner"></div></router-link>
+        <div class="row d-flex justify-content-center mt-5 mb-5" style="margin-right: 20%; margin-left: 20%">
             <div class="list-group col-9">
                 <a
                     v-for="item in carrinho"
