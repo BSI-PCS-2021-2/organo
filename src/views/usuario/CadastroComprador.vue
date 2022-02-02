@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="organoBanner"></div>
     <div class="container" style="padding-top: 5%; padding-bottom: 3%">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
@@ -71,7 +72,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="inputCelular">Celular</label>
+                <label for="inputCelular">Telefone</label>
                 <input
                   type="phone"
                   v-model="celular"
@@ -79,6 +80,7 @@
                   id="inputCelular"
                   placeholder="Ex: 21999999999"
                   maxLength="11"
+                  required
                 />
               </div>
               <p class="h5">Endereço:</p>

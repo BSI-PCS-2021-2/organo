@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="organoBanner"></div>
     <div class="container" style="padding-top: 5%; padding-bottom: 3%">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
@@ -37,7 +38,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="inputName">Nome</label>
+                <label for="inputName">Nome fantasia</label>
                 <input
                   type="text"
                   v-model="nomeFantasia"
@@ -60,7 +61,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="inputTelefoneMovel">Telefone móvel</label>
+                <label for="inputTelefoneMovel">Telefone</label>
                 <input
                   type="phone"
                   v-model="telefoneMovel"
@@ -68,6 +69,7 @@
                   id="inputTelefoneMovel"
                   placeholder="Ex: 21999999999"
                   maxLength="11"
+                  required
                 />
               </div>
               <p class="h4">Informações de entrega</p>

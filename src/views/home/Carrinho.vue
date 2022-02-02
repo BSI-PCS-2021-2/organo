@@ -1,6 +1,6 @@
 <template>
     <div class="card-page">
-    <router-link to="/"><div class="organoBanner"></div></router-link>
+    <div class="organoBanner"></div>
         <div class="row d-flex justify-content-center mt-5 mb-5" style="margin-right: 20%; margin-left: 20%">
             <div class="list-group col-9">
                 <a

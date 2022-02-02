@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/"><div class="organoBanner"></div></router-link>
+        <div class="organoBanner"></div>
         <div class="products-container">
             <div class="products-list">
                 <div

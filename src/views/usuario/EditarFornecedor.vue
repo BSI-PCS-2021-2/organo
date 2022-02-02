@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="organoBanner"></div>
     <div class="container" style="padding-top: 5%; padding-bottom: 3%">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">

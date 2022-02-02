@@ -1,87 +1,86 @@
 <template>
   <div>
     <div class="organoBanner"></div>
-    <div class="main-container">
-      <div class="container-fluid mb-5">
-        <div class="row d-flex justify-content-center">
-          <div class="col-6 text-left text-justify">
-            <div class="display-4 mb-4 font-title">Perfil do fornecedor</div>
-            <br />
-            <p class="h5"><b>Nome:</b> {{ fornecedor.nomeFantasia }}</p>
-            <div>
-              <p class="h5"><b>CNPJ:</b> {{ fornecedor.cnpj }}</p>
-            </div>
-            <div>
-              <p class="h5"><b>E-mail:</b> {{ fornecedor.email }}</p>
-            </div>
-            <div>
-              <p v-if="fornecedor.enderecos" class="h5">
-                <b>Endereço:</b> {{ fornecedor.enderecos[0].rua }},
-                {{ fornecedor.enderecos[0].numero }} - CEP:
-                {{ fornecedor.enderecos[0].cep }}
-              </p>
-            </div>
-            <br />
-            <router-link
-              type="button"
-              class="btn btn-primary btn-lg btn-block col-7"
-              style="padding: 0px; width: 50%"
-              :to="'/editarFornecedor/'"
-            >
-              Editar cadastro
-            </router-link>
-            <br />
-            <br />
-            <div class="row mt-4">
-              <p class="h3" v-if="Object.keys(produtos) !== 0">
-                Produtos cadastrados:
-              </p>
-              <router-link
-                type="button"
-                class="btn btn-secondary btn-md product-button details"
-                :to="'/cadastroProduto/' + fornecedor.cnpj"
-              >
-                Cadastrar produto
-              </router-link>
-            </div>
-            <br />
-            <div class="container">
-              <div class="mr-2 mb-4" v-for="produto in produtos" :key="produto">
-                <div class="row">
-                  <div class="mr-2 mb-4" v-for="p in produto" :key="p.id">
-                    <CardProdutoFornecedor
-                      :produto="p"
-                      v-if="p.deleted !== true"
-                    />
-                  </div>
+    <div class="container-fluid mb-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-6 text-left text-justify">
+          <div class="display-4 mb-4 font-title">
+            {{ fornecedor.nomeFantasia }} - Painel
+          </div>
+          <br />
+          <p class="h5"><b>Nome:</b> {{ fornecedor.nomeFantasia }}</p>
+          <div>
+            <p class="h5"><b>CNPJ:</b> {{ fornecedor.cnpj }}</p>
+          </div>
+          <div>
+            <p class="h5"><b>E-mail:</b> {{ fornecedor.email }}</p>
+          </div>
+          <div>
+            <p v-if="fornecedor.enderecos" class="h5">
+              <b>Endereço:</b> {{ fornecedor.enderecos[0].rua }},
+              {{ fornecedor.enderecos[0].numero }} - CEP:
+              {{ fornecedor.enderecos[0].cep }}
+            </p>
+          </div>
+          <br />
+          <router-link
+            type="button"
+            class="btn btn-primary btn-lg btn-block col-7"
+            style="padding: 0px; width: 50%"
+            :to="'/editarFornecedor/'"
+          >
+            Editar cadastro
+          </router-link>
+          <br />
+          <br />
+          <p class="h3" v-if="Object.keys(produtos) !== 0">
+            Produtos cadastrados:
+          </p>
+          <router-link
+            type="button"
+            class="btn btn-secondary btn-md details"
+            style="float: right; margin-left: 100%; width: 220px; margin-top: -30px"
+            :to="'/cadastroProduto/' + fornecedor.cnpj"
+          >
+            Cadastrar novo produto
+          </router-link>
+          <br />
+          <div class="container">
+            <div class="mr-2 mb-4" v-for="produto in produtos" :key="produto">
+              <div class="row">
+                <div class="mr-2 mb-4" v-for="p in produto" :key="p.id">
+                  <CardProdutoFornecedor
+                    :produto="p"
+                    v-if="p.deleted !== true"
+                  />
                 </div>
               </div>
             </div>
-            <br />
-            <p class="h3" v-if="Object.keys(fornecedorPedidos) !== 0">
-              Pedidos registrados:
-            </p>
-            <br />
-            <div class="row">
-              <div
-                class="col-md-4"
-                v-for="pedido in fornecedorPedidos"
-                :key="pedido.id"
-              >
-                <CardPedido :pedido="pedido" />
-              </div>
-            </div>
-            <br />
-            <p class="h3">Relatório de vendas:</p>
-            <br />
-            <button
-              v-on:click="dadosParaArquivo()"
-              type="button"
-              class="btn btn-primary btn-lg btn-block col-7"
-            >
-              Gerar relatório de vendas
-            </button>
           </div>
+          <br />
+          <p class="h3" v-if="Object.keys(fornecedorPedidos) !== 0">
+            Pedidos registrados:
+          </p>
+          <br />
+          <div class="row">
+            <div
+              class="col-md-3"
+              v-for="pedido in fornecedorPedidos"
+              :key="pedido.id"
+            >
+              <CardPedido :pedido="pedido" />
+            </div>
+          </div>
+          <br />
+          <p class="h3">Relatório de vendas:</p>
+          <br />
+          <button
+            v-on:click="dadosParaArquivo()"
+            type="button"
+            class="btn btn-primary btn-lg btn-block col-7"
+          >
+            Gerar relatório de vendas
+          </button>
         </div>
       </div>
     </div>

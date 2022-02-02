@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/"><div class="organoBanner"></div></router-link>
+    <div class="organoBanner"></div>
     <div class="main-container">
       <div class="row d-flex justify-content-center">
         <div class="col-6 text-left text-justify">
