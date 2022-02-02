@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="organoBanner"></div>
-    <div class="container" style="padding-top: 5%; padding-bottom: 3%">
+    <div class="main-container">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
           <div class="d-flex justify-content-center">
@@ -11,7 +11,7 @@
               alt=""
             />
           </div>
-          <p class="h3 text-center">Autenticar como fornecedor</p>
+          <p class="h3 text-center">Cadastrar como fornecedor</p>
           <br />
           <div>
             <form>

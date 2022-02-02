@@ -8,7 +8,8 @@
             <div class="display-4 mb-4 font-title">Meu perfil</div>
             <div>
               <p class="font-text">
-                <b>Nome completo:</b> {{ comprador.nome }} {{ comprador.sobrenome }}
+                <b>Nome completo:</b> {{ comprador.nome }}
+                {{ comprador.sobrenome }}
               </p>
             </div>
             <div>
@@ -18,7 +19,9 @@
               <p class="font-text mt-2"><b>E-mail:</b> {{ comprador.email }}</p>
             </div>
             <div>
-              <p class="font-text mt-2"><b>Telefone:</b> {{ comprador.celular }}</p>
+              <p class="font-text mt-2">
+                <b>Telefone:</b> {{ comprador.celular }}
+              </p>
             </div>
             <div>
               <p class="font-text mt-2"><b>Endereços: </b></p>
@@ -51,7 +54,7 @@
                 Editar cadastro
               </router-link>
             </div>
-            <br>
+            <br />
             <p class="font-subTitle mt-5 mb-2" v-if="comprador.pedidos">
               Pedidos
             </p>

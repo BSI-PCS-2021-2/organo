@@ -39,7 +39,12 @@
           <router-link
             type="button"
             class="btn btn-secondary btn-md details"
-            style="float: right; margin-left: 100%; width: 220px; margin-top: -30px"
+            style="
+              float: right;
+              margin-left: 100%;
+              width: 220px;
+              margin-top: -30px;
+            "
             :to="'/cadastroProduto/' + fornecedor.cnpj"
           >
             Cadastrar novo produto

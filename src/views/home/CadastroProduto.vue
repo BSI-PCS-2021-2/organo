@@ -73,7 +73,7 @@
                 Cadastrar
               </button>
               <span id="preenche-campos" class="h5"></span>
-              
+
               <router-link
                 type="button"
                 class="btn btn-primary"
@@ -83,7 +83,6 @@
                 Cancelar
               </router-link>
               <br />
-
             </form>
           </div>
         </div>
