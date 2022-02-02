@@ -1,5 +1,5 @@
 <template>
-  <div class="basePage">
+  <div>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="navbar-container">
         <router-link v-if="Object.keys(fornecedor).length === 0" to="/"
@@ -9,12 +9,13 @@
           <img src="../assets/logo.png" class="navbar-logo" />
         </p>
         <div class="ml-auto">
-          <div
+          <button
             v-if="
               Object.keys(comprador).length !== 0 &&
               Object.keys(fornecedor).length === 0
             "
             alt
+            style="border: none; margin: 0; padding: 0"
           >
             <router-link class="btn btn-primary navbar-card" to="/comprador">
               <img
@@ -24,7 +25,7 @@
                 title="Perfil"
               />
             </router-link>
-          </div>
+          </button>
 
           <router-link
             v-else-if="

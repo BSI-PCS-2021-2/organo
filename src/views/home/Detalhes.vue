@@ -1,6 +1,7 @@
 <template>
   <div class="details-page">
     <router-link to="/"><div class="organoBanner"></div></router-link>
+    <div class="main-container">
     <div class="row d-flex justify-content-center mt-5 mb-5">
       <div class="col-2">
         <div class="card text-left shadow-md">
@@ -24,6 +25,7 @@
         </div>
         <AddCarrinho :produto="produto"/>
       </div>
+    </div>
     </div>
   </div>
 </template>

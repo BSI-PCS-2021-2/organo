@@ -2,29 +2,29 @@
   <div class="row mt-4">
     <div class="col-3">
       <label class="sr-only" for="inlineFormInputName2">Quantidade</label>
-      <input type="number" v-model="quantidade" class="form-control mb-2 mr-sm-2" />
+      <input
+        type="number"
+        v-model="quantidade"
+        class="form-control mb-2 mr-sm-2"
+      />
     </div>
     <button
       v-if="Object.keys(fornecedor).length === 0"
-      @click.stop="adicionarNoCarrinho({produto, quantidade})"
+      @click.stop="adicionarNoCarrinho({ produto, quantidade })"
       type="button"
-<<<<<<< Updated upstream
       class="btn btn-primary btn-lg btn-block col-7"
-    >Adicionar no carrinho</button>
-    <router-link
-            v-if="Object.keys(fornecedor).length !== 0"
-            type="button"
-            class="btn btn-primary btn-lg btn-block col-7"
-            style="padding: 10px; width: 50%;"
-            :to="'/editarProduto/' + this.$route.params.idProduto"
     >
-    Editar
+      Adicionar no carrinho
+    </button>
+    <router-link
+      v-if="Object.keys(fornecedor).length !== 0"
+      type="button"
+      class="btn btn-primary btn-lg btn-block col-7"
+      style="padding: 10px; width: 50%"
+      :to="'/editarProduto/' + this.$route.params.idProduto"
+    >
+      Editar
     </router-link>
-=======
-      class="btn btn-primary btn-lg btn-block col-6"
-      style="height: 100%"
-    >Adicionar ao carrinho</button>
->>>>>>> Stashed changes
   </div>
 </template>
 <script>
@@ -52,7 +52,7 @@ export default {
   },
   mounted() {
     console.log(this.$route.params.idProduto);
-  }
+  },
 };
 </script>
 <style>

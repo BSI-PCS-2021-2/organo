@@ -1,7 +1,7 @@
 <template>
-    <div class="productsPage">
+    <div>
         <router-link to="/"><div class="organoBanner"></div></router-link>
-        <div class="main-container">
+        <div class="products-container">
             <div class="products-list">
                 <div
                     v-for="listaProdutos in produtos"

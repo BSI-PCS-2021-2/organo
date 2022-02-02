@@ -19,6 +19,14 @@
 
 .main-container {
     margin: auto;
+    width: 80% !important;
+    height: 100% !important;
+    margin-top: 55px;
+    margin-bottom: 4%;
+}
+
+.products-container {
+    margin: auto;
     width: 65% !important;
     height: 100% !important;
     margin-top: 55px;
@@ -40,7 +48,7 @@
 
 footer {
     background-color: #d3d3d3;
-    height: 150px !important;
+    height: 208px !important;
     width: 100% !important;
 }
 

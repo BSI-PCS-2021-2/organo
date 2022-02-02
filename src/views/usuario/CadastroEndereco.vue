@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" style="padding-top: 5%">
+    <div class="container" style="padding-top: 5%; padding-bottom: 5%">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
          <p class="h3">Cadastro de endereço:</p>
