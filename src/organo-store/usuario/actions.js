@@ -352,7 +352,7 @@ export function deletarProduto({ commit, getters }, payload) {
             })
             let produto = getters.produto
             produto = {}
-            commit('setProduto', produto)
+            commit('produto/setProduto', produto, { root: true })
             setTimeout(() => router.push('/fornecedor'), 1500)
         }
     })
