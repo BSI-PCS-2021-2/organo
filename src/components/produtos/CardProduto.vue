@@ -131,6 +131,6 @@ export default {
 }
 
 .card.product-card {
-  width: 170px !important;
+  width: 175px !important;
 }
 </style>
